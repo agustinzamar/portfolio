@@ -6,7 +6,7 @@ import { Button } from "../components/ui/button.tsx";
 
 export const Hero = () => {
 	return (
-		<div className="relative min-h-screen flex flex-col hero-pattern py-16 lg:py-32 px-8">
+		<div className="max-w-7xl mx-auto relative min-h-screen flex flex-col py-16 lg:py-32 px-8">
 			<div className="absolute w-full h-full md:h-1/2 md:w-1/2 -top-[30%] md:top-16 bg-blur-gradient rounded-full blur-xl"></div>
 			<div className="absolute h-1/4 w-1/4 top-[40%] right-[10%] bg-blur-gradient rounded-full blur-xl hidden md:block"></div>
 
