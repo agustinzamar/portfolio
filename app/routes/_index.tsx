@@ -1,14 +1,16 @@
 import type { MetaFunction } from "@remix-run/node";
-import { IconLaravel } from "~/assets/laravel";
-import { IconStar } from "~/assets/star";
 import { Header } from "~/components/Header";
 import { Hero } from "~/components/Hero";
 import { Projects } from "~/components/Projects";
 
 export const meta: MetaFunction = () => {
 	return [
-		{ title: "New Remix App" },
-		{ name: "description", content: "Welcome to Remix!" },
+		{ title: "Agustin Zamar" },
+		{
+			name: "description",
+			content:
+				"I'm a full stack web developer with over 3 years of experience. Let's talk!",
+		},
 	];
 };
 
