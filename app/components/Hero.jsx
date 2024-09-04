@@ -28,9 +28,9 @@ export const Hero = (props) => {
 				<div className="text-slate-900 dark:text-gray-100 flex flex-col items-center md:flex-row md:justify-between gap-8 md:gap-32">
 					<p>
 						<strong>Full stack developer</strong> for more than{" "}
-						<strong>3 years</strong> in a professional field and for years by
-						vocation. The creation of applications is a passion before being a
-						profession.
+						<strong>3 years</strong> in a professional field and more than 7
+						years by vocation. The creation of applications is a passion before
+						being a profession.
 					</p>
 
 					<Button className="max-w-max min-w-40 h-12">Hire me!</Button>
