@@ -17,7 +17,7 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
 	return (
-		<div className="relative w-full min-h-screen bg-primary overflow-hidden pt-10 hero-pattern">
+		<div className="relative w-full min-h-screen bg-primary overflow-hidden pt-10">
 			<Header />
 			<Hero />
 			<Projects />
