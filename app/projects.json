@@ -1,0 +1,49 @@
+{
+	"projects": [
+		{
+			"title": "Shoe Store Management System",
+			"description": "A robust web-based system designed to streamline the operations of a shoe-selling company with over 30 branches. The platform manages inventory, orders, shippings and accountability.",
+			"image": "https://placehold.co/600x400",
+			"liveLink": "https://www.registrominero.jujuy.gob.ar/"
+		},
+		{
+			"title": "Gym Management System",
+			"description": "Includes features like attendance control, memberships management, sales reports, and staff coordination, this app serves as a powerful tool for managing day-to-day gym activities.",
+			"credentials": {
+				"user": "crystaldesarrollo@gmail.com",
+				"password": "Admin123!"
+			},
+			"image": "https://placehold.co/600x400",
+			"liveLink": "https://crystal.mifitapp.com/login"
+		},
+		{
+			"title": "Restaurant Management System",
+			"description": "With features such as customizable meal options, promotions management, and order history, this app ensures a convenient and efficient way to manage the restaurant.",
+			"credentials": {
+				"user": "crystaldesarrollo@gmail.com",
+				"password": "Admin123!"
+			},
+			"image": "https://placehold.co/600x400",
+			"liveLink": "https://crystal.mifitapp.com/login"
+		},
+		{
+			"title": "Las Marías | Planificación Urbana",
+			"description": "Provides essential information about available land slots for housing development. It’s designed for users to easily explore the project and understand how to visit the site.",
+			"image": "https://placehold.co/600x400",
+			"liveLink": "https://lasmariasproyectos.com/"
+		},
+		{
+			"title": "Mining Vendors Registration Portal",
+			"description": "A dedicated web platform that enables vendors of mining companies to register their businesses with the government of Jujuy, Argentina.",
+			"image": "https://placehold.co/600x400",
+			"liveLink": "https://www.registrominero.jujuy.gob.ar/"
+		},
+		{
+			"title": "Efficient Interval Training App",
+			"description": "A specialized app designed for Tabata and high-intensity interval training (HIIT) workouts. This intuitive timer helps users customize their workout sessions with adjustable intervals for work and rest periods.",
+			"image": "https://placehold.co/600x400",
+			"githubLink": "https://github.com/agustinzamar/tabata-timer",
+			"liveLink": "https://tabata-timer.vercel.app"
+		}
+	]
+}

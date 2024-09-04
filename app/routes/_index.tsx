@@ -20,8 +20,8 @@ export default function Index() {
 		<div className="relative w-full min-h-screen bg-primary overflow-hidden pt-10">
 			<Header />
 			<Hero />
-			<Projects />
 			<TechStack />
+			<Projects />
 		</div>
 	);
 }

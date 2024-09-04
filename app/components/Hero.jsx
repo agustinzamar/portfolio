@@ -11,16 +11,16 @@ export const Hero = () => {
 				<div className="absolute w-full h-full md:h-1/2 md:w-1/2 -top-[30%] md:top-16 bg-blur-gradient rounded-full blur-xl"></div>
 				<div className="absolute h-1/4 w-1/4 top-[40%] right-[10%] bg-blur-gradient rounded-full blur-xl hidden md:block"></div>
 
-				<h2 className="md:mt-20 lg:mt-0 text-slate-900 font-bold dark:text-gray-100 relative !leading-tight tracking-wider max-w-4xl mx-auto text-4xl sm:text-4xl md:text-5xl lg:text-7xl text-pretty text-center">
+				<h2 className="md:mt-20 lg:mt-0 text-slate-900 dark:text-gray-100 relative !leading-tight tracking-wider max-w-4xl mx-auto text-4xl sm:text-4xl md:text-5xl lg:text-7xl text-pretty text-center">
 					<span className="font-bold mr-4">{"{"}</span>
-					<span className="animate-fade-in-up">
+					<span className="font-bold animate-fade-in-up">
 						Creative & <br />{" "}
 					</span>
-					<span className="animate-fade-in-up animate-delay-100">
+					<span className="font-bold animate-fade-in-up animate-delay-100">
 						Experienced
 					</span>{" "}
 					<br />
-					<span className="animate-fade-in-up">Web Developer</span>
+					<span className="font-bold animate-fade-in-up">Web Developer</span>
 					<span className="font-bold ml-4">{"}"}</span>
 				</h2>
 				<IconLaravel className="animate-sink animate-duration-[2s] repeat-infinite h-10 md:h-16 absolute rotate-[20deg] hidden md:block md:top-32 md:left-24 lg:left-32" />
