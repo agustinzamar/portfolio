@@ -14,7 +14,12 @@ import { DotPattern } from "./magicui/dot-pattern.tsx";
 export const Projects = () => {
 	return (
 		<section className="relative dark:bg-black py-16">
-			<DotPattern className="w-[15vw] absolute left-0 top-0 z-0" />
+			<div className="absolute w-1/6 h-full top-0 left-0">
+				<DotPattern />
+			</div>
+			<div className="absolute w-1/6 h-full top-0 right-0">
+				<DotPattern />
+			</div>
 
 			<div className="relative max-w-7xl mx-auto min-h-96 px-4 z-10">
 				<h2 className="md:mt-20 lg:mt-0 font-bold text-slate-900 dark:text-gray-100 relative !leading-tight tracking-wider max-w-4xl mx-auto text-4xl sm:text-4xl md:text-5xl lg:text-7xl text-pretty text-center">
@@ -79,7 +84,6 @@ export const Projects = () => {
 					))}
 				</div>
 			</div>
-			<DotPattern className="w-[15vw] absolute right-0 top-0 z-0" />
 		</section>
 	);
 };
