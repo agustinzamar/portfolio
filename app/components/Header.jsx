@@ -29,11 +29,7 @@ export function Header() {
 					<div className="flex justify-start lg:w-0 lg:flex-1">
 						<Link to="/">
 							<span className="sr-only">Your Name</span>
-							<img
-								className="h-8 w-auto sm:h-10"
-								src="/placeholder.svg?height=40&width=40"
-								alt="Logo"
-							/>
+							<img className="h-8 w-auto sm:h-10" alt="Logo" />
 						</Link>
 					</div>
 					<div className="-mr-2 -my-2 md:hidden">

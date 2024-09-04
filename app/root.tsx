@@ -7,7 +7,6 @@ import {
 } from "@remix-run/react";
 import React from "react";
 import "./tailwind.css";
-import { clsx } from "clsx";
 import { useDarkMode } from "~/hooks/useDarkMode";
 
 export function Layout({ children }: { children: React.ReactNode }) {
