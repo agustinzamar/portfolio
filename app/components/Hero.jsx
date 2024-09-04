@@ -23,9 +23,17 @@ export const Hero = () => {
 					<span className="font-bold animate-fade-in-up">Web Developer</span>
 					<span className="font-bold ml-4">{"}"}</span>
 				</h2>
+
+				<Button
+					asChild
+					className="w-full max-w-64 mx-auto mt-12 hidden md:flex md:mt-8 h-12"
+				>
+					<a href="/agustinzamar_CV.pdf">Download my CV</a>
+				</Button>
+
 				<IconLaravel className="animate-sink animate-duration-[2s] repeat-infinite h-10 md:h-16 absolute rotate-[20deg] hidden md:block md:top-32 md:left-24 lg:left-32" />
 				<IconTailwind className="animate-sink animate-delay-800 animate-duration-[2s] repeat-infinite h-9 md:h-12 absolute -rotate-[40deg] hidden md:block md:top-24 md:right-20 lg:right-40" />
-				<IconReact className="animate-sink animate-delay-400 animate-duration-[2s] repeat-infinite h-10 md:h-16 absolute -rotate-[50deg] hidden md:block md:top-96 lg:top-[31rem] md:left-56" />
+				<IconReact className="animate-sink animate-delay-400 animate-duration-[2s] repeat-infinite h-10 md:h-16 absolute -rotate-[50deg] hidden md:block md:top-[32rem] lg:top-[31rem] md:left-56" />
 				<IconLivewire className="animate-sink animate-delay-1200 animate-duration-[2s] repeat-infinite h-10 md:h-16 absolute -rotate-[30deg] hidden md:block md:top-[30rem] lg:top-[28rem] md:right-60" />
 
 				<div className="mt-auto">

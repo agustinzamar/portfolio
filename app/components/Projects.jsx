@@ -23,9 +23,9 @@ export const Projects = () => {
 
 			<div className="relative max-w-7xl mx-auto min-h-96 px-4 z-10">
 				<h2 className="md:mt-20 lg:mt-0 font-bold text-slate-900 dark:text-gray-100 relative !leading-tight tracking-wider max-w-4xl mx-auto text-4xl sm:text-4xl md:text-5xl lg:text-7xl text-pretty text-center">
-					{`{Portfolio}`}
+					{`{ Portfolio }`}
 				</h2>
-				<h2 className="text-lg sm:text-xl md:text-3xl font-semibold text-pretty text-gray-50 text-center">
+				<h2 className="text-md sm:text-xl md:text-3xl font-semibold text-pretty text-gray-50 text-center">
 					What I've done previously
 				</h2>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 md:mt-12 px-4 lg:px-0">
