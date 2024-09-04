@@ -25,13 +25,7 @@ export function Header() {
 	return (
 		<header className="bg-slate-50 dark:bg-black shadow-sm fixed w-full top-0 z-50">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div className="w-full flex justify-between items-center py-4 md:space-x-10">
-					<div className="flex justify-start lg:w-0 lg:flex-1">
-						<Link to="/">
-							<span className="sr-only">Your Name</span>
-							<img className="h-8 w-auto sm:h-10" alt="Logo" />
-						</Link>
-					</div>
+				<div className="w-full flex justify-start md:justify-center items-center py-4 md:space-x-10">
 					<div className="-mr-2 -my-2 md:hidden">
 						<button
 							type="button"
