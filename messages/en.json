@@ -1,0 +1,292 @@
+{
+  "metadata": {
+    "title": "Agustin Zamar | Full Stack Developer",
+    "description": "Full Stack Developer specializing in Laravel, React, Next.js, and modern web technologies. Based in Salta, Argentina."
+  },
+  "navigation": {
+    "about": "About",
+    "experience": "Experience",
+    "skills": "Skills",
+    "education": "Education",
+    "contact": "Contact",
+    "letsTalk": "Let's Talk"
+  },
+  "hero": {
+    "badge": "Full Stack Developer",
+    "tagline": "Crafting scalable web solutions with",
+    "location": "Salta, Argentina",
+    "availability": "Available for remote work",
+    "cta": {
+      "viewWork": "View My Work",
+      "downloadCV": "Download CV"
+    },
+    "social": {
+      "linkedin": "LinkedIn Profile",
+      "github": "GitHub Profile",
+      "email": "Send Email"
+    },
+    "scroll": "Scroll"
+  },
+  "about": {
+    "sectionTitle": "About Me",
+    "heading": "Building digital products that make a difference",
+    "bio1": "I'm a Full Stack Developer based in Salta, Argentina, with 5+ years of experience architecting and building production-ready web applications. Starting as a QA Analyst gave me a unique appreciation for writing clean, testable, and user-focused code from day one.",
+    "bio2": "Today, I specialize in creating modern web solutions using Laravel, React, and Next.js. I thrive on challenging projects that demand both technical expertise and creative problem-solving, turning complex requirements into elegant, scalable applications.",
+    "stats": {
+      "experience": {
+        "value": "5+",
+        "label": "Years Experience"
+      },
+      "projects": {
+        "value": "20+",
+        "label": "Projects Delivered"
+      },
+      "companies": {
+        "value": "5",
+        "label": "Companies"
+      },
+      "code": {
+        "value": "∞",
+        "label": "Cups of Coffee"
+      }
+    }
+  },
+  "experience": {
+    "sectionTitle": "Experience",
+    "heading": "My Professional Journey",
+    "description": "From quality assurance to full stack development — here's how I evolved into the developer I am today",
+    "jobs": {
+      "crystal": {
+        "company": "Crystal Desarrollo",
+        "position": "Full Stack Developer",
+        "employment": "Full-time",
+        "highlights": [
+          "Architected and developed production web applications using Laravel and React",
+          "Designed and implemented REST APIs serving thousands of requests daily",
+          "Built responsive frontend components with modern CSS frameworks",
+          "Managed relational databases including MySQL, SQL Server, and SQLite",
+          "Implemented CI/CD pipelines with GitHub Actions for automated deployments",
+          "Collaborated directly with clients from initial requirements to final delivery"
+        ]
+      },
+      "gm2": {
+        "company": "GM2",
+        "position": "Full Stack Developer",
+        "employment": "Contract",
+        "highlights": [
+          "Developed backend features using Laravel for enterprise clients",
+          "Built frontend interfaces with React and Next.js",
+          "Designed and integrated REST APIs across Laravel microservices architecture",
+          "Contributed to an API Gateway implementation using AWS SAM",
+          "Collaborated in Agile Scrum teams with daily standups and code reviews"
+        ]
+      },
+      "freelance1": {
+        "company": "Freelance",
+        "position": "Full Stack Developer",
+        "employment": "Independent",
+        "highlights": [
+          "Delivered custom web solutions for multiple clients across industries",
+          "Built full-stack applications using Laravel and React from scratch",
+          "Created and maintained RESTful APIs with comprehensive documentation",
+          "Implemented responsive designs with Tailwind CSS and modern frameworks",
+          "Managed project timelines and maintained clear client communications",
+          "Deployed applications to cloud infrastructure with monitoring"
+        ]
+      },
+      "devsu": {
+        "company": "Devsu",
+        "position": "Full Stack Developer",
+        "employment": "Full-time",
+        "highlights": [
+          "Developed web applications using Laravel, React and TypeScript",
+          "Enhanced e-commerce platforms built with Magento",
+          "Refactored legacy systems using Symfony for improved maintainability",
+          "Integrated external shipment tracking REST APIs",
+          "Developed features for internal backoffice applications",
+          "Utilized Git, GitHub, GitLab and Jenkins CI/CD pipelines",
+          "Worked effectively under Agile methodologies"
+        ]
+      },
+      "jbknowledge": {
+        "company": "JBKnowledge",
+        "position": "Quality Assurance Analyst",
+        "employment": "Full-time",
+        "highlights": [
+          "Designed and executed comprehensive test plans including functional, regression and integration testing",
+          "Created automated test suites using Selenium and Cypress",
+          "Performed cross-browser and cross-platform compatibility testing",
+          "Tracked and managed issues using JIRA and Bugzilla",
+          "Collaborated closely with developers in Agile teams"
+        ]
+      }
+    },
+    "dateFormat": {
+      "present": "Present"
+    },
+    "months": {
+      "jan": "Jan",
+      "feb": "Feb",
+      "mar": "Mar",
+      "apr": "Apr",
+      "may": "May",
+      "jun": "Jun",
+      "jul": "Jul",
+      "aug": "Aug",
+      "sep": "Sep",
+      "oct": "Oct",
+      "nov": "Nov",
+      "dec": "Dec"
+    },
+    "expand": {
+      "show": "Show Details",
+      "hide": "Show Less"
+    }
+  },
+  "skills": {
+    "sectionTitle": "Skills",
+    "heading": "Technologies I Work With",
+    "description": "A comprehensive toolkit built through hands-on experience across diverse projects",
+    "categories": {
+      "languages": {
+        "name": "Languages",
+        "items": ["JavaScript", "TypeScript", "PHP", "SQL"]
+      },
+      "backend": {
+        "name": "Backend",
+        "items": ["Laravel", "NestJS", "REST APIs", "Microservices", "Symfony"]
+      },
+      "frontend": {
+        "name": "Frontend",
+        "items": [
+          "React",
+          "Next.js",
+          "Astro",
+          "TanStack Start",
+          "Vite",
+          "HTML",
+          "CSS",
+          "Tailwind CSS",
+          "Bootstrap"
+        ]
+      },
+      "databases": {
+        "name": "Databases",
+        "items": [
+          "MySQL",
+          "SQL Server",
+          "SQLite",
+          "PostgreSQL",
+          "MongoDB",
+          "Redis"
+        ]
+      },
+      "devops": {
+        "name": "DevOps & Cloud",
+        "items": [
+          "Docker",
+          "GitHub Actions",
+          "Jenkins",
+          "AWS",
+          "Linux",
+          "Nginx",
+          "Apache"
+        ]
+      },
+      "testing": {
+        "name": "Testing",
+        "items": [
+          "Selenium",
+          "Cypress",
+          "PestPHP",
+          "PHPUnit",
+          "RTL",
+          "Jest",
+          "Vitest"
+        ]
+      },
+      "tools": {
+        "name": "Tools & Practices",
+        "items": [
+          "Git",
+          "GitHub",
+          "GitLab",
+          "Herd",
+          "nvm",
+          "Agile",
+          "Scrum",
+          "CI/CD"
+        ]
+      },
+      "ai": {
+        "name": "AI & Agentic Tools",
+        "items": [
+          "Cursor",
+          "Claude Code",
+          "GitHub Copilot",
+          "V0.dev",
+          "Lovable",
+          "Codex",
+          "Gemini CLI",
+          "OpenCode"
+        ]
+      }
+    }
+  },
+  "education": {
+    "sectionTitle": "Education",
+    "heading": "Learning & Growth",
+    "description": "Continuous learning fuels my development journey",
+    "formalTitle": "Formal Education",
+    "developmentTitle": "Professional Development",
+    "university": {
+      "institution": "Universidad Católica de Santiago del Estero",
+      "degree": "University Programmer Technician",
+      "description": "Comprehensive technical degree focused on programming and software development fundamentals"
+    },
+    "courses": {
+      "platzi": {
+        "platform": "Platzi",
+        "title": "Professional Courses",
+        "items": [
+          "Backend Development with NestJS",
+          "Docker Fundamentals",
+          "Software Testing Fundamentals",
+          "Selenium with Python",
+          "REST APIs and Postman",
+          "JavaScript and React.js Specialization"
+        ]
+      },
+      "udemy": {
+        "platform": "Udemy",
+        "title": "Professional Courses",
+        "items": [
+          "Apache, Nginx and SSL Configuration",
+          "Linux Servers and VPS Management"
+        ]
+      }
+    }
+  },
+  "contact": {
+    "sectionTitle": "Get In Touch",
+    "heading": "Let's Build Something Together",
+    "description": "Have a project in mind or just want to chat? I'm always open to discussing new opportunities and creative ideas.",
+    "cta": {
+      "email": "Send me an email",
+      "downloadCV": "Download CV"
+    },
+    "footer": {
+      "copyright": "© {year} Agustin Zamar. All rights reserved.",
+      "backToTop": "Back to top"
+    },
+    "social": {
+      "email": "Send email",
+      "linkedin": "LinkedIn profile",
+      "github": "GitHub profile"
+    }
+  },
+  "language": {
+    "en": "EN",
+    "es": "ES"
+  }
+}

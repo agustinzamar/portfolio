@@ -1,26 +1,35 @@
 "use client";
 
-import { Menu, Moon, Sun, X } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
-
-const navItems = [
-  { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
-  { label: "Skills", href: "#skills" },
-  { label: "Education", href: "#education" },
-  { label: "Contact", href: "#contact" },
-];
+import {Menu, Moon, Sun, X} from "lucide-react";
+import {AnimatePresence, motion} from "motion/react";
+import {usePathname, useRouter} from "next/navigation";
+import {useLocale, useTranslations} from "next-intl";
+import {useTheme} from "next-themes";
+import {useEffect, useMemo, useState} from "react";
+import {Locales} from "@/i18n/locales";
+import {cn} from "@/lib/utils";
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
-  const [language, setLanguage] = useState<"en" | "es">("en");
   const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const t = useTranslations("navigation");
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const navItems = useMemo(
+    () => [
+      { label: t("about"), href: "#about" },
+      { label: t("experience"), href: "#experience" },
+      { label: t("skills"), href: "#skills" },
+      { label: t("education"), href: "#education" },
+      { label: t("contact"), href: "#contact" },
+    ],
+    [t],
+  );
 
   useEffect(() => {
     setMounted(true);
@@ -44,7 +53,7 @@ export function Navigation() {
     window.addEventListener("scroll", handleScroll);
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [navItems]);
 
   const handleNavClick = (href: string) => {
     setIsMobileMenuOpen(false);
@@ -55,7 +64,12 @@ export function Navigation() {
   };
 
   const toggleLanguage = () => {
-    setLanguage((prev) => (prev === "en" ? "es" : "en"));
+    const newLocale = locale === Locales.EN ? Locales.ES : Locales.EN;
+    // Replace only the first path segment (the locale)
+    const segments = pathname.split("/").filter(Boolean);
+    segments[0] = newLocale;
+    const newPathname = "/" + segments.join("/");
+    router.push(newPathname);
   };
 
   if (!mounted) {
@@ -130,19 +144,21 @@ export function Navigation() {
                 whileTap={{ scale: 0.98 }}
                 className="hidden lg:flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full bg-violet-500 text-white hover:bg-violet-600 transition-colors"
               >
-                Let&apos;s Talk
+                {t("letsTalk")}
               </motion.button>
 
               {/* Language Switcher - Desktop Only */}
               <div className="hidden lg:flex items-center bg-muted rounded-full p-1">
                 <motion.button
                   type="button"
-                  onClick={() => setLanguage("en")}
+                  onClick={() => {
+                    if (locale !== Locales.EN) toggleLanguage();
+                  }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className={cn(
                     "px-3 py-1 text-sm font-medium rounded-full transition-colors",
-                    language === "en"
+                    locale === Locales.EN
                       ? "bg-background text-foreground shadow-sm"
                       : "text-muted-foreground hover:text-foreground",
                   )}
@@ -151,12 +167,14 @@ export function Navigation() {
                 </motion.button>
                 <motion.button
                   type="button"
-                  onClick={() => setLanguage("es")}
+                  onClick={() => {
+                    if (locale !== Locales.ES) toggleLanguage();
+                  }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className={cn(
                     "px-3 py-1 text-sm font-medium rounded-full transition-colors",
-                    language === "es"
+                    locale === Locales.ES
                       ? "bg-background text-foreground shadow-sm"
                       : "text-muted-foreground hover:text-foreground",
                   )}
@@ -254,8 +272,51 @@ export function Navigation() {
                 onClick={() => handleNavClick("#contact")}
                 className="block w-full text-left px-4 py-3 text-lg font-medium rounded-lg bg-violet-500 text-white hover:bg-violet-600 transition-colors mt-4"
               >
-                Let&apos;s Talk
+                {t("letsTalk")}
               </motion.button>
+
+              {/* Language Switcher - Mobile */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: (navItems.length + 1) * 0.1 }}
+                className="flex items-center bg-muted rounded-full p-1 mt-4"
+              >
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (locale !== Locales.EN) {
+                      toggleLanguage();
+                      setIsMobileMenuOpen(false);
+                    }
+                  }}
+                  className={cn(
+                    "flex-1 px-3 py-2 text-sm font-medium rounded-full transition-colors",
+                    locale === Locales.EN
+                      ? "bg-background text-foreground shadow-sm"
+                      : "text-muted-foreground",
+                  )}
+                >
+                  EN
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (locale !== Locales.ES) {
+                      toggleLanguage();
+                      setIsMobileMenuOpen(false);
+                    }
+                  }}
+                  className={cn(
+                    "flex-1 px-3 py-2 text-sm font-medium rounded-full transition-colors",
+                    locale === Locales.ES
+                      ? "bg-background text-foreground shadow-sm"
+                      : "text-muted-foreground",
+                  )}
+                >
+                  ES
+                </button>
+              </motion.div>
             </div>
           </motion.div>
         )}

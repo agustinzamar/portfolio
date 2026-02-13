@@ -2,34 +2,38 @@
 
 import { ArrowUp, Download, Github, Linkedin, Mail } from "lucide-react";
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 
-const socialLinks = [
-  {
-    name: "Email",
-    href: "mailto:agustinzamar33@gmail.com",
-    icon: Mail,
-    label: "Send email",
-  },
-  {
-    name: "LinkedIn",
-    href: "https://linkedin.com/in/agustinzamar",
-    icon: Linkedin,
-    label: "View LinkedIn profile",
-  },
-  {
-    name: "GitHub",
-    href: "https://github.com/agustinzamar",
-    icon: Github,
-    label: "View GitHub profile",
-  },
-];
-
 export function ContactSection() {
+  const t = useTranslations("contact");
+  const currentYear = new Date().getFullYear();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  const socialLinks = [
+    {
+      name: "Email",
+      href: "mailto:agustinzamar33@gmail.com",
+      icon: Mail,
+      label: t("social.email"),
+    },
+    {
+      name: "LinkedIn",
+      href: "https://linkedin.com/in/agustinzamar",
+      icon: Linkedin,
+      label: t("social.linkedin"),
+    },
+    {
+      name: "GitHub",
+      href: "https://github.com/agustinzamar",
+      icon: Github,
+      label: t("social.github"),
+    },
+  ];
 
   return (
     <section id="contact" className="py-24 sm:py-32 relative">
@@ -38,18 +42,17 @@ export function ContactSection() {
         <div className="text-center mb-20">
           <BlurFade delay={0.1} inView>
             <span className="text-violet-600 dark:text-violet-400 font-medium text-sm tracking-wider uppercase">
-              Get In Touch
+              {t("sectionTitle")}
             </span>
           </BlurFade>
           <BlurFade delay={0.2} inView>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mt-4 mb-6">
-              Let&apos;s Work Together
+              {t("heading")}
             </h2>
           </BlurFade>
           <BlurFade delay={0.3} inView>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10">
-              I&apos;m always open to discussing new projects, creative ideas,
-              or opportunities to be part of your vision.
+              {t("description")}
             </p>
           </BlurFade>
           <BlurFade delay={0.4} inView>
@@ -66,7 +69,7 @@ export function ContactSection() {
                   background="linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)"
                 >
                   <Mail className="w-5 h-5 mr-2" />
-                  Send me an email
+                  {t("cta.email")}
                 </ShimmerButton>
               </motion.a>
 
@@ -78,7 +81,7 @@ export function ContactSection() {
                 className="inline-flex items-center gap-2 px-8 py-4 text-base font-medium rounded-full border border-border hover:bg-muted transition-colors"
               >
                 <Download className="w-5 h-5" />
-                Download CV
+                {t("cta.downloadCV")}
               </motion.a>
             </div>
           </BlurFade>
@@ -90,7 +93,7 @@ export function ContactSection() {
             {/* Copyright */}
             <BlurFade delay={0.5} inView>
               <p className="text-sm text-muted-foreground">
-                © {new Date().getFullYear()} Agustin Zamar. All rights reserved.
+                {t("footer.copyright", { year: currentYear })}
               </p>
             </BlurFade>
 
@@ -132,7 +135,7 @@ export function ContactSection() {
                 whileTap={{ scale: 0.95 }}
                 className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
-                <span>Back to top</span>
+                <span>{t("footer.backToTop")}</span>
                 <ArrowUp className="w-4 h-4" />
               </motion.button>
             </BlurFade>

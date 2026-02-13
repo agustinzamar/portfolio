@@ -2,90 +2,49 @@
 
 import { Briefcase, Calendar, ChevronDown, MapPin } from "lucide-react";
 import { motion } from "motion/react";
+import { useMessages, useTranslations } from "next-intl";
 import { useState } from "react";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { cn } from "@/lib/utils";
 
-const experiences = [
+interface Experience {
+  id: string;
+  location: string;
+  startDate: string;
+  endDate: string;
+}
+
+const experiencesData: Experience[] = [
   {
-    company: "Crystal Desarrollo",
-    position: "Full Stack Developer",
-    employment: "Full-time",
+    id: "crystal",
     location: "Remote, Argentina",
     startDate: "2025-02",
     endDate: "present",
-    highlights: [
-      "Developed production web applications using Laravel and React",
-      "Designed and implemented REST APIs",
-      "Built responsive frontend components",
-      "Managed relational databases (MySQL, SQL Server, SQLite)",
-      "Implemented CI/CD pipelines with GitHub Actions",
-      "Worked directly with clients from requirements to delivery",
-    ],
   },
   {
-    company: "GM2",
-    position: "Full Stack Developer",
-    employment: "Contract",
+    id: "gm2",
     location: "Remote, Argentina",
     startDate: "2024-11",
     endDate: "2025-02",
-    highlights: [
-      "Developed backend features using Laravel",
-      "Built frontend interfaces with React and Next.js",
-      "Designed and integrated REST APIs across Laravel microservices",
-      "Contributed to an API Gateway using AWS SAM",
-      "Worked in Agile Scrum teams (planning, dailies, code reviews)",
-    ],
   },
   {
-    company: "Freelance",
-    position: "Full Stack Developer",
-    employment: "Independent",
+    id: "freelance1",
     location: "Remote, Argentina",
     startDate: "2023-08",
     endDate: "2024-10",
-    highlights: [
-      "Developed custom web solutions for multiple clients",
-      "Built full-stack applications using Laravel and React",
-      "Created and maintained RESTful APIs",
-      "Implemented responsive designs with modern CSS frameworks",
-      "Managed project timelines and client communications",
-      "Deployed applications to cloud infrastructure",
-    ],
   },
   {
-    company: "Devsu",
-    position: "Full Stack Developer",
-    employment: "Full-time",
+    id: "devsu",
     location: "Remote, Argentina",
     startDate: "2022-07",
     endDate: "2023-07",
-    highlights: [
-      "Developed web applications using Laravel, React and TypeScript",
-      "Worked on e-commerce platforms built with Magento",
-      "Refactored legacy systems using Symfony",
-      "Integrated external shipment tracking REST APIs",
-      "Developed features for internal backoffice applications",
-      "Used Git, GitHub, GitLab and Jenkins CI/CD",
-      "Worked under Agile methodologies",
-    ],
   },
   {
-    company: "JBKnowledge",
-    position: "Quality Assurance Analyst",
-    employment: "Full-time",
+    id: "jbknowledge",
     location: "Remote, Argentina",
     startDate: "2020-10",
     endDate: "2022-07",
-    highlights: [
-      "Designed and executed functional, regression and integration tests",
-      "Created automated tests using Selenium and Cypress",
-      "Performed cross-browser and cross-platform testing",
-      "Tracked issues using JIRA and Bugzilla",
-      "Worked closely with developers in Agile teams",
-    ],
   },
 ];
 
@@ -93,30 +52,62 @@ function ExperienceCard({
   experience,
   index,
 }: {
-  experience: (typeof experiences)[0];
+  experience: Experience;
   index: number;
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const t = useTranslations("experience");
+  const messages = useMessages();
 
   const formatDate = (date: string) => {
-    if (date === "present") return "Present";
+    if (date === "present") return t("dateFormat.present");
     const [year, month] = date.split("-");
-    const monthNames = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
-    return `${monthNames[Number.parseInt(month, 10) - 1]} ${year}`;
+    const monthKey = [
+      "jan",
+      "feb",
+      "mar",
+      "apr",
+      "may",
+      "jun",
+      "jul",
+      "aug",
+      "sep",
+      "oct",
+      "nov",
+      "dec",
+    ][Number.parseInt(month, 10) - 1] as
+      | "jan"
+      | "feb"
+      | "mar"
+      | "apr"
+      | "may"
+      | "jun"
+      | "jul"
+      | "aug"
+      | "sep"
+      | "oct"
+      | "nov"
+      | "dec";
+    return `${t(`months.${monthKey}`)} ${year}`;
   };
+
+  const company = t(`jobs.${experience.id}.company`);
+  const position = t(`jobs.${experience.id}.position`);
+  const employment = t(`jobs.${experience.id}.employment`);
+
+  // Get highlights safely by checking messages structure
+  const highlights: string[] = [];
+  const experienceMessages = (messages as Record<string, unknown>)
+    ?.experience as Record<string, unknown>;
+  const jobsMessages = experienceMessages?.jobs as Record<string, unknown>;
+  const jobData = jobsMessages?.[experience.id] as Record<string, unknown>;
+  const jobHighlights = jobData?.highlights as string[] | undefined;
+
+  if (jobHighlights && Array.isArray(jobHighlights)) {
+    for (const highlight of jobHighlights) {
+      highlights.push(highlight);
+    }
+  }
 
   return (
     <BlurFade delay={0.2 + index * 0.1} inView>
@@ -147,10 +138,8 @@ function ExperienceCard({
                   <Briefcase className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold">
-                    {experience.company}
-                  </h3>
-                  <p className="text-muted-foreground">{experience.position}</p>
+                  <h3 className="text-xl font-semibold">{company}</h3>
+                  <p className="text-muted-foreground">{position}</p>
                 </div>
               </div>
               <div className="flex flex-col items-start sm:items-end gap-1 text-sm text-muted-foreground">
@@ -175,9 +164,9 @@ function ExperienceCard({
               className="overflow-hidden"
             >
               <ul className="space-y-2 pt-2">
-                {experience.highlights.map((highlight, i) => (
+                {highlights.map((highlight, i) => (
                   <motion.li
-                    key={`${experience.company}-highlight-${i}`}
+                    key={`${experience.id}-highlight-${i}`}
                     initial={{ opacity: 0, x: -10 }}
                     animate={
                       isExpanded ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }
@@ -198,7 +187,7 @@ function ExperienceCard({
               onClick={() => setIsExpanded(!isExpanded)}
               className="mt-4 flex items-center gap-2 text-sm font-medium text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 transition-colors"
             >
-              <span>{isExpanded ? "Show Less" : "Show Details"}</span>
+              <span>{isExpanded ? t("expand.hide") : t("expand.show")}</span>
               <motion.div
                 animate={{ rotate: isExpanded ? 180 : 0 }}
                 transition={{ duration: 0.2 }}
@@ -214,6 +203,8 @@ function ExperienceCard({
 }
 
 export function ExperienceSection() {
+  const t = useTranslations("experience");
+
   return (
     <section id="experience" className="py-24 sm:py-32 relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -221,18 +212,17 @@ export function ExperienceSection() {
         <div className="text-center mb-16">
           <BlurFade delay={0.1} inView>
             <span className="text-violet-600 dark:text-violet-400 font-medium text-sm tracking-wider uppercase">
-              Experience
+              {t("sectionTitle")}
             </span>
           </BlurFade>
           <BlurFade delay={0.2} inView>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mt-4">
-              My Professional Journey
+              {t("heading")}
             </h2>
           </BlurFade>
           <BlurFade delay={0.3} inView>
             <p className="text-lg text-muted-foreground mt-4 max-w-2xl mx-auto">
-              From QA to Full Stack Development, here&apos;s the path that
-              shaped my career
+              {t("description")}
             </p>
           </BlurFade>
         </div>
@@ -244,8 +234,8 @@ export function ExperienceSection() {
 
           {/* Experience Cards */}
           <div className="space-y-8 lg:space-y-12">
-            {experiences.map((experience, index) => (
-              <div key={experience.company} className="lg:pl-20 relative">
+            {experiencesData.map((experience, index) => (
+              <div key={experience.id} className="lg:pl-20 relative">
                 {/* Timeline Dot - Hidden on mobile */}
                 <div className="absolute left-6 top-8 w-5 h-5 rounded-full bg-violet-500 border-4 border-background hidden lg:block" />
 

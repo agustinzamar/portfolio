@@ -2,10 +2,20 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { MagicCard } from "@/components/ui/magic-card";
 
 export function AboutSection() {
+  const t = useTranslations("about");
+
+  const stats = [
+    { key: "experience", value: t("stats.experience.value") },
+    { key: "projects", value: t("stats.projects.value") },
+    { key: "companies", value: t("stats.companies.value") },
+    { key: "code", value: t("stats.code.value") },
+  ] as const;
+
   return (
     <section id="about" className="py-24 sm:py-32 relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -44,68 +54,40 @@ export function AboutSection() {
           <div className="space-y-6">
             <BlurFade delay={0.3} inView>
               <span className="text-violet-600 dark:text-violet-400 font-medium text-sm tracking-wider uppercase">
-                About Me
+                {t("sectionTitle")}
               </span>
             </BlurFade>
 
             <BlurFade delay={0.4} inView>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
-                Crafting digital experiences with passion
+                {t("heading")}
               </h2>
             </BlurFade>
 
             <BlurFade delay={0.5} inView>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                I&apos;m a Full Stack Developer based in Salta, Argentina, with
-                over 7 years of experience building web applications. My journey
-                started as a QA Analyst, which gave me a unique perspective on
-                writing clean, testable, and user-focused code.
+                {t("bio1")}
               </p>
             </BlurFade>
 
             <BlurFade delay={0.6} inView>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Today, I specialize in creating modern web solutions using
-                Laravel, React, and Next.js. I enjoy working on challenging
-                projects that require both technical expertise and creative
-                problem-solving.
+                {t("bio2")}
               </p>
             </BlurFade>
 
             <BlurFade delay={0.7} inView>
               <div className="grid grid-cols-2 gap-6 pt-4">
-                <div className="space-y-2">
-                  <div className="text-3xl font-bold text-violet-600 dark:text-violet-400">
-                    5+
+                {stats.map((stat) => (
+                  <div key={stat.key} className="space-y-2">
+                    <div className="text-3xl font-bold text-violet-600 dark:text-violet-400">
+                      {stat.value}
+                    </div>
+                    <div className="text-sm text-muted-foreground">
+                      {t(`stats.${stat.key}.label`)}
+                    </div>
                   </div>
-                  <div className="text-sm text-muted-foreground">
-                    Years of Experience
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <div className="text-3xl font-bold text-violet-600 dark:text-violet-400">
-                    20+
-                  </div>
-                  <div className="text-sm text-muted-foreground">
-                    Projects Completed
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <div className="text-3xl font-bold text-violet-600 dark:text-violet-400">
-                    4
-                  </div>
-                  <div className="text-sm text-muted-foreground">
-                    Companies Worked
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <div className="text-3xl font-bold text-violet-600 dark:text-violet-400">
-                    ∞
-                  </div>
-                  <div className="text-sm text-muted-foreground">
-                    Lines of Code
-                  </div>
-                </div>
+                ))}
               </div>
             </BlurFade>
           </div>

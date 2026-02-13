@@ -2,6 +2,7 @@
 
 import { ChevronDown, Download, Github, Linkedin, Mail } from "lucide-react";
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 import { AuroraText } from "@/components/ui/aurora-text";
 import { Particles } from "@/components/ui/particles";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
@@ -11,34 +12,36 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-const socialLinks = [
-  {
-    name: "LinkedIn",
-    href: "https://linkedin.com/in/agustinzamar",
-    icon: Linkedin,
-    label: "View LinkedIn Profile",
-  },
-  {
-    name: "GitHub",
-    href: "https://github.com/agustinzamar",
-    icon: Github,
-    label: "View GitHub Profile",
-  },
-  {
-    name: "Email",
-    href: "mailto:agustinzamar33@gmail.com",
-    icon: Mail,
-    label: "Send Email",
-  },
-];
-
 export function HeroSection() {
+  const t = useTranslations("hero");
+
   const handleScrollToAbout = () => {
     const element = document.getElementById("about");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  const socialLinks = [
+    {
+      name: "LinkedIn",
+      href: "https://linkedin.com/in/agustinzamar",
+      icon: Linkedin,
+      label: t("social.linkedin"),
+    },
+    {
+      name: "GitHub",
+      href: "https://github.com/agustinzamar",
+      icon: Github,
+      label: t("social.github"),
+    },
+    {
+      name: "Email",
+      href: "mailto:agustinzamar33@gmail.com",
+      icon: Mail,
+      label: t("social.email"),
+    },
+  ];
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -64,7 +67,7 @@ export function HeroSection() {
           className="mb-4"
         >
           <span className="inline-block px-4 py-1.5 rounded-full text-sm font-medium bg-violet-500/10 text-violet-600 dark:text-violet-400 border border-violet-500/20">
-            Full Stack Developer
+            {t("badge")}
           </span>
         </motion.div>
 
@@ -92,9 +95,10 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.5 }}
           className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed"
         >
-          Building modern web experiences with{" "}
+          {t("tagline")}{" "}
           <span className="text-foreground font-medium">Laravel</span>,{" "}
-          <span className="text-foreground font-medium">React</span>, and{" "}
+          <span className="text-foreground font-medium">React</span>,{" "}
+          {t("tagline") && t("tagline").includes("con") ? "y " : "and "}
           <span className="text-foreground font-medium">Next.js</span>
         </motion.p>
 
@@ -126,11 +130,9 @@ export function HeroSection() {
               d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
             />
           </svg>
-          <span className="text-sm">Salta, Argentina</span>
+          <span className="text-sm">{t("location")}</span>
           <span className="mx-2">•</span>
-          <span className="text-sm">
-            Available for remote/hybrid work
-          </span>
+          <span className="text-sm">{t("availability")}</span>
         </motion.div>
 
         {/* CTA Buttons */}
@@ -146,19 +148,19 @@ export function HeroSection() {
             shimmerColor="#818CF8"
             background="linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)"
           >
-            View My Work
+            {t("cta.viewWork")}
           </ShimmerButton>
 
           <motion.a
             href="/assets/files/Agustin_Zamar_CV.pdf"
             download
-            title="Download CV"
+            title={t("cta.downloadCV")}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="flex items-center gap-2 px-8 py-3 text-base font-medium rounded-full bg-muted hover:bg-violet-500/10 text-foreground hover:text-violet-600 dark:hover:text-violet-400 transition-colors"
           >
             <Download className="w-5 h-5" />
-            Download CV
+            {t("cta.downloadCV")}
           </motion.a>
         </motion.div>
 
@@ -217,7 +219,7 @@ export function HeroSection() {
           aria-label="Scroll to about section"
         >
           <span className="text-xs font-medium tracking-wider uppercase">
-            Scroll
+            {t("scroll")}
           </span>
           <ChevronDown className="w-5 h-5" />
         </motion.button>

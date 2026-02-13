@@ -2,73 +2,23 @@
 
 import { Award, BookOpen, GraduationCap } from "lucide-react";
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 import { BlurFade } from "@/components/ui/blur-fade";
 
-interface EducationItem {
-  institution: string;
-  degree: string;
-  location: string;
+interface CourseConfig {
+  id: string;
   startDate: string;
   endDate: string;
-  type: string;
-  description: string;
 }
 
-const educationItems: EducationItem[] = [
-  {
-    institution: "Universidad Católica de Santiago del Estero",
-    degree: "University Programmer Technician",
-    location: "Argentina",
-    startDate: "2016",
-    endDate: "2019",
-    type: "degree",
-    description:
-      "University-level technical degree focused on programming and software development.",
-  },
+const coursesConfig: CourseConfig[] = [
+  { id: "platzi", startDate: "2020", endDate: "2025" },
+  { id: "udemy", startDate: "2025", endDate: "2025" },
 ];
 
-interface CourseItem {
-  platform: string;
-  title: string;
-  startDate: string;
-  endDate: string;
-  items: string[];
-}
+function EducationCard({ index }: { index: number }) {
+  const t = useTranslations("education");
 
-const courses: CourseItem[] = [
-  {
-    platform: "Platzi",
-    title: "Professional Courses",
-    startDate: "2020",
-    endDate: "2025",
-    items: [
-      "Backend Development with NestJS",
-      "Docker Fundamentals",
-      "Software Testing Fundamentals",
-      "Selenium with Python",
-      "REST APIs and Postman",
-      "JavaScript and React.js specialization",
-    ],
-  },
-  {
-    platform: "Udemy",
-    title: "Professional Courses",
-    startDate: "2025",
-    endDate: "2025",
-    items: [
-      "Apache, Nginx and SSL configuration",
-      "Linux servers and VPS management",
-    ],
-  },
-];
-
-function EducationCard({
-  educationItem,
-  index,
-}: {
-  educationItem: EducationItem;
-  index: number;
-}) {
   return (
     <BlurFade delay={0.2 + index * 0.1} inView>
       <motion.div
@@ -82,19 +32,19 @@ function EducationCard({
           </div>
           <div className="flex-1 min-w-0">
             <h3 className="text-xl font-semibold mb-1">
-              {educationItem.degree}
+              {t("university.degree")}
             </h3>
             <p className="text-muted-foreground mb-2">
-              {educationItem.institution}
+              {t("university.institution")}
             </p>
             <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
-              <span>{educationItem.location}</span>
+              <span>Argentina</span>
               <span>•</span>
-              <span>
-                {educationItem.startDate} - {educationItem.endDate}
-              </span>
+              <span>2016 - 2019</span>
             </div>
-            <p className="text-muted-foreground">{educationItem.description}</p>
+            <p className="text-muted-foreground">
+              {t("university.description")}
+            </p>
           </div>
         </div>
       </motion.div>
@@ -103,12 +53,25 @@ function EducationCard({
 }
 
 function CourseCard({
-  course,
+  config,
   index,
 }: {
-  course: (typeof courses)[0];
+  config: CourseConfig;
   index: number;
 }) {
+  const t = useTranslations("education");
+
+  const title = t(`courses.${config.id}.title`);
+  const platform = t(`courses.${config.id}.platform`);
+
+  // Get course items from translations (max 20 items per course)
+  const items: string[] = [];
+  const maxItems = config.id === "platzi" ? 6 : 2; // Platzi has 6 items, Udemy has 2
+  for (let i = 0; i < maxItems; i++) {
+    const item = t(`courses.${config.id}.items.${i}`);
+    items.push(item);
+  }
+
   return (
     <BlurFade delay={0.3 + index * 0.1} inView>
       <motion.div
@@ -121,13 +84,13 @@ function CourseCard({
             <BookOpen className="w-6 h-6" />
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="text-xl font-semibold mb-1">{course.title}</h3>
+            <h3 className="text-xl font-semibold mb-1">{title}</h3>
             <p className="text-muted-foreground mb-3">
-              {course.platform} • {course.startDate}
-              {course.endDate !== course.startDate && ` - ${course.endDate}`}
+              {platform} • {config.startDate}
+              {config.endDate !== config.startDate && ` - ${config.endDate}`}
             </p>
             <ul className="space-y-2">
-              {course.items.map((item) => (
+              {items.map((item) => (
                 <li
                   key={item}
                   className="flex items-start gap-2 text-sm text-muted-foreground"
@@ -145,6 +108,8 @@ function CourseCard({
 }
 
 export function EducationSection() {
+  const t = useTranslations("education");
+
   return (
     <section id="education" className="py-24 sm:py-32 relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -152,17 +117,17 @@ export function EducationSection() {
         <div className="text-center mb-16">
           <BlurFade delay={0.1} inView>
             <span className="text-violet-600 dark:text-violet-400 font-medium text-sm tracking-wider uppercase">
-              Education
+              {t("sectionTitle")}
             </span>
           </BlurFade>
           <BlurFade delay={0.2} inView>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mt-4">
-              Learning & Growth
+              {t("heading")}
             </h2>
           </BlurFade>
           <BlurFade delay={0.3} inView>
             <p className="text-lg text-muted-foreground mt-4 max-w-2xl mx-auto">
-              Continuous learning is the foundation of my development journey
+              {t("description")}
             </p>
           </BlurFade>
         </div>
@@ -170,16 +135,10 @@ export function EducationSection() {
         {/* Education */}
         <div className="mb-12">
           <BlurFade delay={0.2} inView>
-            <h3 className="text-2xl font-semibold mb-6">Formal Education</h3>
+            <h3 className="text-2xl font-semibold mb-6">{t("formalTitle")}</h3>
           </BlurFade>
           <div className="max-w-2xl">
-            {educationItems.map((edu, index) => (
-              <EducationCard
-                key={edu.institution}
-                educationItem={edu}
-                index={index}
-              />
-            ))}
+            <EducationCard index={0} />
           </div>
         </div>
 
@@ -187,12 +146,12 @@ export function EducationSection() {
         <div>
           <BlurFade delay={0.3} inView>
             <h3 className="text-2xl font-semibold mb-6">
-              Professional Development
+              {t("developmentTitle")}
             </h3>
           </BlurFade>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {courses.map((course, index) => (
-              <CourseCard key={course.platform} course={course} index={index} />
+            {coursesConfig.map((config, index) => (
+              <CourseCard key={config.id} config={config} index={index} />
             ))}
           </div>
         </div>
