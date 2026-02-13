@@ -1,23 +1,12 @@
-import type {Metadata} from "next";
-import {Geist, Geist_Mono} from "next/font/google";
+import type { Metadata } from "next";
 import "../globals.css";
-import {notFound} from "next/navigation";
-import {hasLocale, NextIntlClientProvider} from "next-intl";
-import {getMessages} from "next-intl/server";
-import {ThemeProvider} from "@/components/theme-provider";
-import {ScrollProgress} from "@/components/ui/scroll-progress";
-import {TooltipProvider} from "@/components/ui/tooltip";
-import {routing} from "@/i18n/routing";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { notFound } from "next/navigation";
+import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { ThemeProvider } from "@/components/theme-provider";
+import { ScrollProgress } from "@/components/ui/scroll-progress";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { routing } from "@/i18n/routing";
 
 export async function generateMetadata({
   params,
@@ -78,9 +67,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
-      >
+      <body suppressHydrationWarning>
         <NextIntlClientProvider messages={messages} locale={locale}>
           <ThemeProvider
             attribute="class"
@@ -89,7 +76,7 @@ export default async function LocaleLayout({
             disableTransitionOnChange={false}
           >
             <TooltipProvider delayDuration={100}>
-              <ScrollProgress className="fixed top-0 left-0 right-0 h-1 z-50 bg-gradient-to-r from-violet-500 via-purple-500 to-indigo-500" />
+              <ScrollProgress />
               {children}
             </TooltipProvider>
           </ThemeProvider>
