@@ -1,10 +1,36 @@
 "use client";
 
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Download, Github, Linkedin, Mail } from "lucide-react";
 import { motion } from "motion/react";
 import { AuroraText } from "@/components/ui/aurora-text";
 import { Particles } from "@/components/ui/particles";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
+const socialLinks = [
+  {
+    name: "LinkedIn",
+    href: "https://linkedin.com/in/agustinzamar",
+    icon: Linkedin,
+    label: "View LinkedIn Profile",
+  },
+  {
+    name: "GitHub",
+    href: "https://github.com/agustinzamar",
+    icon: Github,
+    label: "View GitHub Profile",
+  },
+  {
+    name: "Email",
+    href: "mailto:agustinzamar33@gmail.com",
+    icon: Mail,
+    label: "Send Email",
+  },
+];
 
 export function HeroSection() {
   const handleScrollToAbout = () => {
@@ -26,7 +52,7 @@ export function HeroSection() {
       />
 
       {/* Gradient Background */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-background via-background to-muted/20" />
+      <div className="absolute inset-0 z-0 bg-linear-to-b from-background via-background to-muted/20" />
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -102,7 +128,9 @@ export function HeroSection() {
           </svg>
           <span className="text-sm">Salta, Argentina</span>
           <span className="mx-2">•</span>
-          <span className="text-sm">Available for remote work</span>
+          <span className="text-sm">
+            Available for remote/hybrid work
+          </span>
         </motion.div>
 
         {/* CTA Buttons */}
@@ -122,14 +150,54 @@ export function HeroSection() {
           </ShimmerButton>
 
           <motion.a
-            href="mailto:agustinzamar33@gmail.com"
-            title="Send email to Agustin Zamar"
+            href="/assets/files/Agustin_Zamar_CV.pdf"
+            download
+            title="Download CV"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="px-8 py-3 text-base font-medium rounded-full border border-border hover:bg-muted transition-colors"
+            className="flex items-center gap-2 px-8 py-3 text-base font-medium rounded-full bg-muted hover:bg-violet-500/10 text-foreground hover:text-violet-600 dark:hover:text-violet-400 transition-colors"
           >
-            Get In Touch
+            <Download className="w-5 h-5" />
+            Download CV
           </motion.a>
+        </motion.div>
+
+        {/* Social Icons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.9 }}
+          className="flex items-center justify-center gap-3 mt-8"
+        >
+          {socialLinks.map((link) => {
+            const Icon = link.icon;
+            return (
+              <Tooltip key={link.name}>
+                <TooltipTrigger asChild>
+                  <motion.a
+                    href={link.href}
+                    target={
+                      link.href.startsWith("mailto") ? undefined : "_blank"
+                    }
+                    rel={
+                      link.href.startsWith("mailto")
+                        ? undefined
+                        : "noopener noreferrer"
+                    }
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="p-3 rounded-full bg-muted hover:bg-violet-500/10 text-muted-foreground hover:text-violet-600 dark:hover:text-violet-400 transition-colors"
+                    aria-label={link.label}
+                  >
+                    <Icon className="w-5 h-5" />
+                  </motion.a>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>{link.label}</p>
+                </TooltipContent>
+              </Tooltip>
+            );
+          })}
         </motion.div>
       </div>
 

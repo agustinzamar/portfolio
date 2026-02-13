@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -52,8 +53,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange={false}
         >
-          <ScrollProgress className="fixed top-0 left-0 right-0 h-1 z-50 bg-gradient-to-r from-violet-500 via-purple-500 to-indigo-500" />
-          {children}
+          <TooltipProvider delayDuration={100}>
+            <ScrollProgress className="fixed top-0 left-0 right-0 h-1 z-50 bg-gradient-to-r from-violet-500 via-purple-500 to-indigo-500" />
+            {children}
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>

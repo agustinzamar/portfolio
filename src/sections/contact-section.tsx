@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUp, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowUp, Download, Github, Linkedin, Mail } from "lucide-react";
 import { motion } from "motion/react";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
@@ -53,21 +53,34 @@ export function ContactSection() {
             </p>
           </BlurFade>
           <BlurFade delay={0.4} inView>
-            <motion.a
-              href="mailto:agustinzamar33@gmail.com"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-flex"
-            >
-              <ShimmerButton
-                className="px-8 py-4 text-base font-medium"
-                shimmerColor="#818CF8"
-                background="linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)"
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <motion.a
+                href="mailto:agustinzamar33@gmail.com"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-flex"
               >
-                <Mail className="w-5 h-5 mr-2" />
-                Send me an email
-              </ShimmerButton>
-            </motion.a>
+                <ShimmerButton
+                  className="px-8 py-4 text-base font-medium"
+                  shimmerColor="#818CF8"
+                  background="linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)"
+                >
+                  <Mail className="w-5 h-5 mr-2" />
+                  Send me an email
+                </ShimmerButton>
+              </motion.a>
+
+              <motion.a
+                href="/assets/files/Agustin_Zamar_CV.pdf"
+                download
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-flex items-center gap-2 px-8 py-4 text-base font-medium rounded-full border border-border hover:bg-muted transition-colors"
+              >
+                <Download className="w-5 h-5" />
+                Download CV
+              </motion.a>
+            </div>
           </BlurFade>
         </div>
 

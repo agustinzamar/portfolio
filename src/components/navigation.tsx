@@ -18,6 +18,7 @@ export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [language, setLanguage] = useState<"en" | "es">("en");
   const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -51,6 +52,10 @@ export function Navigation() {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  const toggleLanguage = () => {
+    setLanguage((prev) => (prev === "en" ? "es" : "en"));
   };
 
   if (!mounted) {
@@ -115,8 +120,51 @@ export function Navigation() {
               ))}
             </div>
 
-            {/* Theme Toggle & Mobile Menu */}
+            {/* Let's Talk Button, Language Switcher, Theme Toggle & Mobile Menu */}
             <div className="flex items-center gap-2">
+              {/* Let's Talk Button - Desktop Only */}
+              <motion.button
+                type="button"
+                onClick={() => handleNavClick("#contact")}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="hidden lg:flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full bg-violet-500 text-white hover:bg-violet-600 transition-colors"
+              >
+                Let&apos;s Talk
+              </motion.button>
+
+              {/* Language Switcher - Desktop Only */}
+              <div className="hidden lg:flex items-center bg-muted rounded-full p-1">
+                <motion.button
+                  type="button"
+                  onClick={() => setLanguage("en")}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={cn(
+                    "px-3 py-1 text-sm font-medium rounded-full transition-colors",
+                    language === "en"
+                      ? "bg-background text-foreground shadow-sm"
+                      : "text-muted-foreground hover:text-foreground",
+                  )}
+                >
+                  EN
+                </motion.button>
+                <motion.button
+                  type="button"
+                  onClick={() => setLanguage("es")}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={cn(
+                    "px-3 py-1 text-sm font-medium rounded-full transition-colors",
+                    language === "es"
+                      ? "bg-background text-foreground shadow-sm"
+                      : "text-muted-foreground hover:text-foreground",
+                  )}
+                >
+                  ES
+                </motion.button>
+              </div>
+
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -198,6 +246,16 @@ export function Navigation() {
                   {item.label}
                 </motion.button>
               ))}
+              {/* Let's Talk in Mobile Menu */}
+              <motion.button
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: navItems.length * 0.1 }}
+                onClick={() => handleNavClick("#contact")}
+                className="block w-full text-left px-4 py-3 text-lg font-medium rounded-lg bg-violet-500 text-white hover:bg-violet-600 transition-colors mt-4"
+              >
+                Let&apos;s Talk
+              </motion.button>
             </div>
           </motion.div>
         )}
