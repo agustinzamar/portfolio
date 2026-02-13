@@ -3,6 +3,7 @@
 import { ArrowUpRight, Github, Globe } from "lucide-react";
 import { motion, useMotionValue, useTransform } from "motion/react";
 import { useTranslations } from "next-intl";
+import { useTheme } from "next-themes";
 import { useRef, useState } from "react";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { BorderBeam } from "@/components/ui/border-beam";
@@ -13,7 +14,8 @@ interface Project {
   name: string;
   description: string;
   techStack: string[];
-  gradient: string;
+  lightGradient: string;
+  darkGradient: string;
   initials: string;
 }
 
@@ -23,7 +25,10 @@ const projects: Project[] = [
     name: "TaskFlow Pro",
     description: "Enterprise task management SaaS with real-time collaboration",
     techStack: ["Next.js", "Laravel", "PostgreSQL", "WebSockets"],
-    gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)",
+    lightGradient:
+      "linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)",
+    darkGradient:
+      "linear-gradient(135deg, #3d4a7a 0%, #4a3a5c 50%, #6b5a7a 100%)",
     initials: "TF",
   },
   {
@@ -31,7 +36,10 @@ const projects: Project[] = [
     name: "CloudStore API",
     description: "Scalable e-commerce backend serving 100k+ requests daily",
     techStack: ["Laravel", "Redis", "MySQL", "Docker"],
-    gradient: "linear-gradient(135deg, #0ba360 0%, #3cba92 50%, #00d2ff 100%)",
+    lightGradient:
+      "linear-gradient(135deg, #0ba360 0%, #3cba92 50%, #00d2ff 100%)",
+    darkGradient:
+      "linear-gradient(135deg, #1a5a40 0%, #2a6a5a 50%, #2a7a8a 100%)",
     initials: "CS",
   },
   {
@@ -40,7 +48,10 @@ const projects: Project[] = [
     description:
       "Real-time analytics dashboard with interactive visualizations",
     techStack: ["React", "NestJS", "MongoDB", "Socket.io"],
-    gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #fa709a 100%)",
+    lightGradient:
+      "linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #fa709a 100%)",
+    darkGradient:
+      "linear-gradient(135deg, #7a5a7a 0%, #8a4a5a 50%, #9a5a6a 100%)",
     initials: "AD",
   },
   {
@@ -48,7 +59,10 @@ const projects: Project[] = [
     name: "AuthGuard",
     description: "Secure authentication microservice with OAuth2 and MFA",
     techStack: ["Laravel", "JWT", "PostgreSQL", "Redis"],
-    gradient: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #f6d365 100%)",
+    lightGradient:
+      "linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #f6d365 100%)",
+    darkGradient:
+      "linear-gradient(135deg, #8a5a5a 0%, #8a7a7a 50%, #8a7a4a 100%)",
     initials: "AG",
   },
   {
@@ -56,7 +70,10 @@ const projects: Project[] = [
     name: "DevHub Portal",
     description: "Developer community platform with code sharing and vetting",
     techStack: ["Next.js", "Tailwind", "Supabase", "Prisma"],
-    gradient: "linear-gradient(135deg, #a18cd1 0%, #fbc2eb 50%, #8fd3f4 100%)",
+    lightGradient:
+      "linear-gradient(135deg, #a18cd1 0%, #fbc2eb 50%, #8fd3f4 100%)",
+    darkGradient:
+      "linear-gradient(135deg, #6a5a8a 0%, #8a7a8a 50%, #5a7a8a 100%)",
     initials: "DH",
   },
   {
@@ -64,12 +81,23 @@ const projects: Project[] = [
     name: "PayFlow Integration",
     description: "Unified payment gateway wrapper with smart routing",
     techStack: ["PHP", "Laravel", "Stripe", "Webhook"],
-    gradient: "linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #ff6b6b 100%)",
+    lightGradient:
+      "linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #ff6b6b 100%)",
+    darkGradient:
+      "linear-gradient(135deg, #8a7a6a 0%, #8a6a5a 50%, #8a4a4a 100%)",
     initials: "PF",
   },
 ];
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
+function ProjectCard({
+  project,
+  index,
+  isDark,
+}: {
+  project: Project;
+  index: number;
+  isDark: boolean;
+}) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -98,6 +126,9 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
     y.set(0);
   };
 
+  // Select gradient based on theme
+  const gradient = isDark ? project.darkGradient : project.lightGradient;
+
   return (
     <BlurFade delay={0.2 + index * 0.1} inView>
       <motion.div
@@ -121,10 +152,15 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         >
           {/* Gradient Background */}
           <div
-            className="absolute inset-0"
+            className="absolute inset-0 transition-all duration-500"
             style={{
-              background: project.gradient,
+              background: gradient,
             }}
+          />
+
+          {/* Dark Mode Overlay for better text contrast */}
+          <div
+            className={`absolute inset-0 transition-opacity duration-500 ${isDark ? "bg-black/20" : "bg-transparent"}`}
           />
 
           {/* Particles on Hover */}
@@ -133,7 +169,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               className="absolute inset-0 z-10"
               quantity={20}
               ease={50}
-              color="#ffffff"
+              color={isDark ? "#ffffff" : "#ffffff"}
               staticity={30}
               size={2}
             />
@@ -144,8 +180,8 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             className={`opacity-0 ${isHovered ? "opacity-100" : ""} transition-opacity duration-500`}
             size={150}
             duration={3}
-            colorFrom="#ffffff"
-            colorTo="rgba(255,255,255,0.5)"
+            colorFrom={isDark ? "rgba(255,255,255,0.8)" : "#ffffff"}
+            colorTo={isDark ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.5)"}
           />
 
           {/* Content - Always Visible */}
@@ -153,7 +189,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             {/* Top Row - Initials */}
             <div className="flex justify-between items-start">
               <motion.div
-                className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center"
+                className={`w-12 h-12 rounded-xl backdrop-blur-md flex items-center justify-center transition-colors duration-300 ${isDark ? "bg-black/30" : "bg-white/20"}`}
                 animate={{
                   scale: isHovered ? 1.1 : 1,
                 }}
@@ -177,7 +213,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                 {project.techStack.slice(0, 2).map((tech) => (
                   <span
                     key={tech}
-                    className="px-2 py-1 text-[10px] font-medium bg-white/20 backdrop-blur-sm rounded-md text-white"
+                    className={`px-2 py-1 text-[10px] font-medium backdrop-blur-sm rounded-md text-white transition-colors duration-300 ${isDark ? "bg-black/30" : "bg-white/20"}`}
                   >
                     {tech}
                   </span>
@@ -210,7 +246,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                 {project.techStack.map((tech) => (
                   <span
                     key={tech}
-                    className="px-3 py-1 text-xs font-medium bg-white/20 backdrop-blur-sm rounded-full text-white border border-white/30"
+                    className={`px-3 py-1 text-xs font-medium backdrop-blur-sm rounded-full text-white border transition-colors duration-300 ${isDark ? "bg-black/30 border-white/20" : "bg-white/20 border-white/30"}`}
                   >
                     {tech}
                   </span>
@@ -229,14 +265,14 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               >
                 <button
                   type="button"
-                  className="flex items-center gap-1.5 px-3 py-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-lg text-white text-xs font-medium transition-all"
+                  className={`flex items-center gap-1.5 px-3 py-2 backdrop-blur-sm rounded-lg text-white text-xs font-medium transition-all ${isDark ? "bg-black/30 hover:bg-black/40" : "bg-white/20 hover:bg-white/30"}`}
                 >
                   <Globe className="w-3.5 h-3.5" />
                   <span>Demo</span>
                 </button>
                 <button
                   type="button"
-                  className="flex items-center gap-1.5 px-3 py-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-lg text-white text-xs font-medium transition-all border border-white/20"
+                  className={`flex items-center gap-1.5 px-3 py-2 backdrop-blur-sm rounded-lg text-white text-xs font-medium transition-all border ${isDark ? "bg-black/20 hover:bg-black/30 border-white/20" : "bg-white/10 hover:bg-white/20 border-white/20"}`}
                 >
                   <Github className="w-3.5 h-3.5" />
                   <span>Code</span>
@@ -250,7 +286,9 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             className="absolute inset-0 rounded-3xl pointer-events-none"
             animate={{
               boxShadow: isHovered
-                ? "0 0 40px rgba(255, 255, 255, 0.3)"
+                ? isDark
+                  ? "0 0 40px rgba(255, 255, 255, 0.15)"
+                  : "0 0 40px rgba(255, 255, 255, 0.3)"
                 : "none",
             }}
             transition={{ duration: 0.3 }}
@@ -263,6 +301,8 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
 export function ProjectsSection() {
   const t = useTranslations("projects");
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
 
   return (
     <section id="projects" className="py-24 sm:py-32 relative overflow-hidden">
@@ -298,24 +338,14 @@ export function ProjectsSection() {
         {/* Simple Grid - Equal Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
+            <ProjectCard
+              key={project.id}
+              project={project}
+              index={index}
+              isDark={isDark}
+            />
           ))}
         </div>
-
-        {/* View All CTA */}
-        <BlurFade delay={0.8} inView>
-          <div className="text-center mt-12">
-            <motion.button
-              type="button"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-full font-medium shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all"
-            >
-              <span>{t("viewAll")}</span>
-              <ArrowUpRight className="w-5 h-5" />
-            </motion.button>
-          </div>
-        </BlurFade>
       </div>
     </section>
   );
