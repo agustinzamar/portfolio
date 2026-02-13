@@ -1,12 +1,10 @@
-import { Navigation } from "@/components/navigation";
-import { AboutSection } from "@/sections/about-section";
-import { ClientsSection } from "@/sections/clients-section";
-import { ContactSection } from "@/sections/contact-section";
-import { EducationSection } from "@/sections/education-section";
-import { ExperienceSection } from "@/sections/experience-section";
-import { HeroSection } from "@/sections/hero-section";
-import { ProjectsSection } from "@/sections/projects-section";
-import { SkillsSection } from "@/sections/skills-section";
+import {Navigation} from "@/components/navigation";
+import {AboutSection} from "@/sections/about-section";
+import {ContactSection} from "@/sections/contact-section";
+import {EducationSection} from "@/sections/education-section";
+import {ExperienceSection} from "@/sections/experience-section";
+import {HeroSection} from "@/sections/hero-section";
+import {SkillsSection} from "@/sections/skills-section";
 
 export default function Home() {
   return (
@@ -16,9 +14,9 @@ export default function Home() {
         <HeroSection />
         <AboutSection />
         <ExperienceSection />
-        <ClientsSection />
+        {/*<ClientsSection />*/}
         <SkillsSection />
-        <ProjectsSection />
+        {/*<ProjectsSection />*/}
         <EducationSection />
         <ContactSection />
       </main>
