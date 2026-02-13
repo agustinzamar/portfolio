@@ -94,8 +94,10 @@ export function Navigation() {
             className={cn(
               "mx-auto flex items-center justify-between transition-all duration-300",
               isScrolled
-                ? "rounded-full bg-background/95 dark:bg-background/95 backdrop-blur-sm border border-border/40 py-3 mt-2 shadow-sm px-8 sm:px-10"
-                : "rounded-full bg-white/6 dark:bg-black/30 backdrop-blur-lg border border-white/8 py-4 mt-4 shadow-md px-8 sm:px-10",
+                ? // slightly more opaque when scrolled
+                  "rounded-full bg-white/40 dark:bg-black/40 backdrop-blur-sm border border-white/20 dark:border-black/30 py-3 mt-2 shadow-sm px-8 sm:px-10"
+                : // glassy floating pill when at top
+                  "rounded-full bg-white/12 dark:bg-black/28 backdrop-blur-lg border border-white/10 dark:border-black/24 py-4 mt-4 shadow-md px-8 sm:px-10",
             )}
           >
             {/* Logo / Name */}
