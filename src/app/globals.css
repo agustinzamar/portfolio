@@ -76,6 +76,11 @@
 
 :root {
   --radius: 0.625rem;
+  /* nav tokens for glass pill */
+  --nav-glass-light: rgba(255, 255, 255, 0.06);
+  --nav-glass-dark: rgba(0, 0, 0, 0.28);
+  --nav-border: rgba(255, 255, 255, 0.08);
+  --nav-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -158,6 +163,14 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  /* Reduced motion utility */
+  @media (prefers-reduced-motion: reduce) {
+    .motion-safe {
+      animation: none !important;
+      transition: none !important;
+      transform: none !important;
+    }
   }
 }
 

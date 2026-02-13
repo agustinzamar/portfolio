@@ -85,23 +85,30 @@ export function Navigation() {
         className={cn(
           "fixed top-0 left-0 right-0 z-40 transition-all duration-300",
           isScrolled
-            ? "bg-background/80 backdrop-blur-xl border-b border-border/50"
+            ? "bg-background/80 backdrop-blur-sm border-b border-border/50"
             : "bg-transparent",
         )}
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo */}
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          {/* Inner pill container (edge-to-edge nav with centered pill) */}
+          <div
+            className={cn(
+              "mx-auto flex items-center justify-between transition-all duration-300",
+              isScrolled
+                ? "rounded-md bg-background/95 dark:bg-background/95 backdrop-blur-sm border border-border/40 py-1 mt-0 shadow-sm"
+                : "rounded-full bg-white/6 dark:bg-black/30 backdrop-blur-lg border border-white/8 py-3 mt-4 shadow-md",
+            )}
+          >
+            {/* Logo / Name */}
             <motion.button
-              className="text-lg font-semibold tracking-tight"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => {
-                window.scrollTo({ top: 0, behavior: "smooth" });
-              }}
+              className="text-lg font-semibold tracking-tight whitespace-nowrap px-4"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               type="button"
+              aria-label="Go to top — Agustín Zamar"
             >
-              AZ
+              Agustín Zamar
             </motion.button>
 
             {/* Desktop Navigation */}
