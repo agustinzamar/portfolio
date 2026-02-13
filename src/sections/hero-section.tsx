@@ -4,7 +4,6 @@ import { ChevronDown, Download, Github, Linkedin, Mail } from "lucide-react";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { AuroraText } from "@/components/ui/aurora-text";
-import { LampContainer } from "@/components/ui/lamp";
 import { Particles } from "@/components/ui/particles";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 import {
@@ -45,18 +44,21 @@ export function HeroSection() {
   ];
 
   return (
-    <LampContainer className="relative overflow-hidden">
-      {/* Background Particles (kept for subtle motion) */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Particles */}
       <Particles
-        className="absolute inset-0 z-10"
+        className="absolute inset-0 z-0"
         quantity={50}
         ease={80}
         color="#6366F1"
         staticity={50}
       />
 
-      {/* Content (placed inside LampContainer children wrapper) */}
-      <div className="relative z-50 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      {/* Gradient Background */}
+      <div className="absolute inset-0 z-0 bg-linear-to-b from-background via-background to-muted/20" />
+
+      {/* Content */}
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Greeting */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -222,6 +224,6 @@ export function HeroSection() {
           <ChevronDown className="w-5 h-5" />
         </motion.button>
       </motion.div>
-    </LampContainer>
+    </section>
   );
 }
