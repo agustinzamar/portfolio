@@ -1,13 +1,13 @@
 "use client";
 
-import {Menu, Moon, Sun, X} from "lucide-react";
-import {AnimatePresence, motion} from "motion/react";
-import {usePathname, useRouter} from "next/navigation";
-import {useLocale, useTranslations} from "next-intl";
-import {useTheme} from "next-themes";
-import {useEffect, useMemo, useState} from "react";
-import {Locales} from "@/i18n/locales";
-import {cn} from "@/lib/utils";
+import { Menu, Moon, Sun, X } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import { usePathname, useRouter } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
+import { useTheme } from "next-themes";
+import { useEffect, useMemo, useState } from "react";
+import { Locales } from "@/i18n/locales";
+import { cn } from "@/lib/utils";
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
