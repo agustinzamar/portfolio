@@ -90,16 +90,9 @@ export function ContactSection() {
         {/* Footer */}
         <footer className="border-t border-border pt-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            {/* Copyright */}
-            <BlurFade delay={0.5} inView>
-              <p className="text-sm text-muted-foreground">
-                {t("footer.copyright", { year: currentYear })}
-              </p>
-            </BlurFade>
-
-            {/* Social Links */}
+            {/* Social Links (moved to left) */}
             <BlurFade delay={0.6} inView>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 order-1 md:order-1">
                 {socialLinks.map((link) => {
                   const Icon = link.icon;
                   return (
@@ -126,14 +119,14 @@ export function ContactSection() {
               </div>
             </BlurFade>
 
-            {/* Back to Top */}
+            {/* Back to Top (right) */}
             <BlurFade delay={0.7} inView>
               <motion.button
                 type="button"
                 onClick={scrollToTop}
                 whileHover={{ y: -4 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors order-2 md:order-2"
               >
                 <span>{t("footer.backToTop")}</span>
                 <ArrowUp className="w-4 h-4" />
