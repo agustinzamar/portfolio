@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import { ScrollProgress } from "@/components/ui/scroll-progress";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,22 +17,6 @@ export const metadata: Metadata = {
   title: "Agustin Zamar | Full Stack Developer",
   description:
     "Full Stack Developer specializing in Laravel, React, Next.js, and modern web technologies. Based in Salta, Argentina.",
-  keywords: [
-    "Full Stack Developer",
-    "React",
-    "Next.js",
-    "Laravel",
-    "TypeScript",
-    "JavaScript",
-    "Web Development",
-  ],
-  authors: [{ name: "Agustin Zamar" }],
-  openGraph: {
-    title: "Agustin Zamar | Full Stack Developer",
-    description:
-      "Full Stack Developer specializing in Laravel, React, Next.js, and modern web technologies.",
-    type: "website",
-  },
 };
 
 export default function RootLayout({
@@ -43,21 +25,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange={false}
-        >
-          <TooltipProvider delayDuration={100}>
-            <ScrollProgress className="fixed top-0 left-0 right-0 h-1 z-50 bg-gradient-to-r from-violet-500 via-purple-500 to-indigo-500" />
-            {children}
-          </TooltipProvider>
-        </ThemeProvider>
+        {children}
+        <SpeedInsights
+          dsn={process.env.NEXT_PUBLIC_VERCEL_OBSERVABILITY_DSN}
+          sampleRate={
+            process.env.NEXT_PUBLIC_VERCEL_OBSERVABILITY_SAMPLE_RATE
+              ? Number(process.env.NEXT_PUBLIC_VERCEL_OBSERVABILITY_SAMPLE_RATE)
+              : undefined
+          }
+        />
       </body>
     </html>
   );
