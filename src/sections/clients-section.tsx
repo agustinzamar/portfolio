@@ -137,7 +137,7 @@ export function ClientsSection() {
         <div className="absolute right-1/4 bottom-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
           <BlurFade delay={0.1} inView>
@@ -146,7 +146,7 @@ export function ClientsSection() {
             </span>
           </BlurFade>
           <BlurFade delay={0.2} inView>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mt-4">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mt-4">
               {t("heading")}
             </h2>
           </BlurFade>

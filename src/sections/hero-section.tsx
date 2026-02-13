@@ -59,14 +59,14 @@ export function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* Greeting */}
+        {/* Section Label */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
           className="mb-4"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full text-sm font-medium bg-violet-500/10 text-violet-600 dark:text-violet-400 border border-violet-500/20">
+          <span className="text-primary font-medium text-sm tracking-wider uppercase">
             {t("badge")}
           </span>
         </motion.div>
@@ -157,7 +157,7 @@ export function HeroSection() {
             title={t("cta.downloadCV")}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="flex items-center gap-2 px-8 py-3 text-base font-medium rounded-full bg-muted hover:bg-violet-500/10 text-foreground hover:text-violet-600 dark:hover:text-violet-400 transition-colors"
+            className="flex items-center gap-2 px-8 py-3 text-base font-medium rounded-full bg-muted hover:bg-primary/10 text-foreground hover:text-primary transition-colors"
           >
             <Download className="w-5 h-5" />
             {t("cta.downloadCV")}
@@ -188,7 +188,7 @@ export function HeroSection() {
                     }
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.95 }}
-                    className="p-3 rounded-full bg-muted hover:bg-violet-500/10 text-muted-foreground hover:text-violet-600 dark:hover:text-violet-400 transition-colors"
+                    className="p-3 rounded-full bg-muted hover:bg-primary/10 text-muted-foreground hover:text-primary transition-colors"
                     aria-label={link.label}
                   >
                     <Icon className="w-5 h-5" />

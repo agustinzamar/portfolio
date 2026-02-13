@@ -1,10 +1,10 @@
 "use client";
 
-import { ArrowUp, Download, Github, Linkedin, Mail } from "lucide-react";
-import { motion } from "motion/react";
-import { useTranslations } from "next-intl";
-import { BlurFade } from "@/components/ui/blur-fade";
-import { ShimmerButton } from "@/components/ui/shimmer-button";
+import {ArrowUp, Download, Github, Linkedin, Mail} from "lucide-react";
+import {motion} from "motion/react";
+import {useTranslations} from "next-intl";
+import {BlurFade} from "@/components/ui/blur-fade";
+import {ShimmerButton} from "@/components/ui/shimmer-button";
 
 export function ContactSection() {
   const t = useTranslations("contact");
@@ -36,17 +36,26 @@ export function ContactSection() {
   ];
 
   return (
-    <section id="contact" className="py-24 sm:py-32 relative">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-24 sm:py-32 relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute left-1/4 top-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl animate-pulse" />
+        <div
+          className="absolute right-1/4 bottom-1/4 w-[500px] h-[500px] bg-primary/3 rounded-full blur-3xl animate-pulse"
+          style={{ animationDelay: "1s" }}
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Contact CTA */}
         <div className="text-center mb-20">
           <BlurFade delay={0.1} inView>
-            <span className="text-violet-600 dark:text-violet-400 font-medium text-sm tracking-wider uppercase">
+            <span className="text-primary font-medium text-sm tracking-wider uppercase">
               {t("sectionTitle")}
             </span>
           </BlurFade>
           <BlurFade delay={0.2} inView>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mt-4 mb-6">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mt-4 mb-6">
               {t("heading")}
             </h2>
           </BlurFade>
@@ -78,7 +87,7 @@ export function ContactSection() {
                 download
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center gap-2 px-8 py-4 text-base font-medium rounded-full border border-border hover:bg-muted transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 text-base font-medium rounded-full border border-border hover:bg-primary/10 hover:text-primary transition-colors"
               >
                 <Download className="w-5 h-5" />
                 {t("cta.downloadCV")}
@@ -109,7 +118,7 @@ export function ContactSection() {
                       }
                       whileHover={{ y: -4, scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
-                      className="p-3 rounded-full bg-muted hover:bg-violet-500/10 text-muted-foreground hover:text-violet-600 dark:hover:text-violet-400 transition-colors"
+                      className="p-3 rounded-full bg-muted hover:bg-primary/10 text-muted-foreground hover:text-primary transition-colors"
                       aria-label={link.label}
                     >
                       <Icon className="w-5 h-5" />
@@ -119,14 +128,14 @@ export function ContactSection() {
               </div>
             </BlurFade>
 
-            {/* Back to Top (right) */}
+            {/* Back to Top */}
             <BlurFade delay={0.7} inView>
               <motion.button
                 type="button"
                 onClick={scrollToTop}
                 whileHover={{ y: -4 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors order-2 md:order-2"
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors order-2 md:order-3"
               >
                 <span>{t("footer.backToTop")}</span>
                 <ArrowUp className="w-4 h-4" />
