@@ -94,8 +94,8 @@ export function Navigation() {
             className={cn(
               "mx-auto flex items-center justify-between transition-all duration-300",
               isScrolled
-                ? "rounded-md bg-background/95 dark:bg-background/95 backdrop-blur-sm border border-border/40 py-2 mt-2 shadow-sm px-6 sm:px-8"
-                : "rounded-full bg-white/6 dark:bg-black/30 backdrop-blur-lg border border-white/8 py-4 mt-4 shadow-md px-6 sm:px-8",
+                ? "rounded-md bg-background/95 dark:bg-background/95 backdrop-blur-sm border border-border/40 py-3 mt-2 shadow-sm px-8 sm:px-10"
+                : "rounded-full bg-white/6 dark:bg-black/30 backdrop-blur-lg border border-white/8 py-4 mt-4 shadow-md px-8 sm:px-10",
             )}
           >
             {/* Logo / Name */}
