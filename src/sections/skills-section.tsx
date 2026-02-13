@@ -1,0 +1,201 @@
+"use client";
+
+import {
+  Bot,
+  Cloud,
+  Code2,
+  Database,
+  GitBranch,
+  Layout,
+  type LucideIcon,
+  Server,
+  TestTube2,
+} from "lucide-react";
+import { motion } from "motion/react";
+import { BlurFade } from "@/components/ui/blur-fade";
+
+interface Skill {
+  name: string;
+  icon: LucideIcon;
+  items: string[];
+  color: string;
+}
+
+const skills: Skill[] = [
+  {
+    name: "Languages",
+    icon: Code2,
+    items: ["JavaScript", "TypeScript", "PHP", "SQL"],
+    color: "#F59E0B",
+  },
+  {
+    name: "Backend",
+    icon: Server,
+    items: ["Laravel", "NestJS", "REST APIs", "Microservices", "Symfony"],
+    color: "#10B981",
+  },
+  {
+    name: "Frontend",
+    icon: Layout,
+    items: [
+      "React",
+      "Next.js",
+      "Astro",
+      "TanStack Start",
+      "Vite",
+      "HTML",
+      "CSS",
+      "Tailwind CSS",
+      "Bootstrap",
+    ],
+    color: "#3B82F6",
+  },
+  {
+    name: "Databases",
+    icon: Database,
+    items: ["MySQL", "SQL Server", "SQLite", "PostgreSQL", "MongoDB", "Redis"],
+    color: "#8B5CF6",
+  },
+  {
+    name: "DevOps & Cloud",
+    icon: Cloud,
+    items: [
+      "Docker",
+      "GitHub Actions",
+      "Jenkins",
+      "AWS",
+      "Linux",
+      "Nginx",
+      "Apache",
+    ],
+    color: "#06B6D4",
+  },
+  {
+    name: "Testing",
+    icon: TestTube2,
+    items: [
+      "Selenium",
+      "Cypress",
+      "PestPHP",
+      "PHPUnit",
+      "RTL",
+      "Jest",
+      "Vitest",
+    ],
+    color: "#EF4444",
+  },
+  {
+    name: "Tools & Practices",
+    icon: GitBranch,
+    items: [
+      "Git",
+      "GitHub",
+      "GitLab",
+      "Herd",
+      "nvm",
+      "Agile",
+      "Scrum",
+      "CI/CD",
+    ],
+    color: "#6366F1",
+  },
+  {
+    name: "AI & Agentic Tools",
+    icon: Bot,
+    items: [
+      "Cursor",
+      "Claude Code",
+      "GitHub Copilot",
+      "V0.dev",
+      "Lovable",
+      "Codex",
+      "Gemini CLI",
+      "OpenCode",
+    ],
+    color: "#EC4899",
+  },
+];
+
+function SkillCard({ skill, index }: { skill: Skill; index: number }) {
+  const Icon = skill.icon;
+
+  return (
+    <BlurFade delay={0.1 + index * 0.05} inView>
+      <motion.div
+        whileHover={{ y: -8, scale: 1.02 }}
+        transition={{ type: "spring", stiffness: 400, damping: 25 }}
+        className="group relative bg-card border border-border rounded-2xl p-6 h-full"
+      >
+        {/* Gradient overlay on hover */}
+        <div
+          className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          style={{
+            background: `radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), ${skill.color}10, transparent 40%)`,
+          }}
+        />
+
+        <div className="relative z-10">
+          {/* Icon */}
+          <div
+            className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-colors duration-300"
+            style={{ backgroundColor: `${skill.color}15` }}
+          >
+            <Icon
+              className="w-6 h-6 transition-colors duration-300"
+              style={{ color: skill.color }}
+            />
+          </div>
+
+          {/* Title */}
+          <h3 className="text-lg font-semibold mb-3">{skill.name}</h3>
+
+          {/* Skills List */}
+          <div className="flex flex-wrap gap-2">
+            {skill.items.map((item) => (
+              <span
+                key={item}
+                className="px-3 py-1 text-sm rounded-full bg-muted text-muted-foreground hover:bg-violet-500/10 hover:text-violet-600 dark:hover:text-violet-400 transition-colors"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+    </BlurFade>
+  );
+}
+
+export function SkillsSection() {
+  return (
+    <section id="skills" className="py-24 sm:py-32 relative">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <BlurFade delay={0.1} inView>
+            <span className="text-violet-600 dark:text-violet-400 font-medium text-sm tracking-wider uppercase">
+              Skills
+            </span>
+          </BlurFade>
+          <BlurFade delay={0.2} inView>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mt-4">
+              Technologies I Work With
+            </h2>
+          </BlurFade>
+          <BlurFade delay={0.3} inView>
+            <p className="text-lg text-muted-foreground mt-4 max-w-2xl mx-auto">
+              A comprehensive toolkit built over years of hands-on experience
+            </p>
+          </BlurFade>
+        </div>
+
+        {/* Skills Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {skills.map((skill, index) => (
+            <SkillCard key={skill.name} skill={skill} index={index} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
