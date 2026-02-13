@@ -285,6 +285,12 @@
       "github": "GitHub profile"
     }
   },
+  "clients": {
+    "sectionTitle": "Trusted By",
+    "heading": "Companies that trust me",
+    "description": "Proud to have collaborated with leading companies on innovative projects that drive real results",
+    "footer": "These mockup companies represent the caliber of clients I've worked with"
+  },
   "language": {
     "en": "EN",
     "es": "ES"

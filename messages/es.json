@@ -285,6 +285,12 @@
       "github": "Perfil de GitHub"
     }
   },
+  "clients": {
+    "sectionTitle": "Confían en Mí",
+    "heading": "Empresas que confían en mí",
+    "description": "Orgulloso de haber colaborado con empresas líderes en proyectos innovadores que generan resultados reales",
+    "footer": "Estas empresas de ejemplo representan el calibre de clientes con los que he trabajado"
+  },
   "language": {
     "en": "EN",
     "es": "ES"
