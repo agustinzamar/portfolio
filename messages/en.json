@@ -291,6 +291,12 @@
     "description": "Proud to have collaborated with leading companies on innovative projects that drive real results",
     "footer": "These mockup companies represent the caliber of clients I've worked with"
   },
+  "projects": {
+    "sectionTitle": "Portfolio",
+    "heading": "Featured Projects",
+    "description": "A showcase of recent work demonstrating technical expertise and creative problem-solving across various technologies and industries",
+    "viewAll": "View All Projects"
+  },
   "language": {
     "en": "EN",
     "es": "ES"

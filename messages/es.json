@@ -288,8 +288,14 @@
   "clients": {
     "sectionTitle": "Confían en Mí",
     "heading": "Empresas que confían en mí",
-    "description": "Orgulloso de haber colaborado con empresas líderes en proyectos innovadores que generan resultados reales",
+    "description": "Orgulloso de haber colaborar con empresas líderes en proyectos innovadores que generan resultados reales",
     "footer": "Estas empresas de ejemplo representan el calibre de clientes con los que he trabajado"
+  },
+  "projects": {
+    "sectionTitle": "Portafolio",
+    "heading": "Proyectos Destacados",
+    "description": "Una selección de trabajo reciente que demuestra experiencia técnica y resolución creativa de problemas en diversas tecnologías e industrias",
+    "viewAll": "Ver Todos los Proyectos"
   },
   "language": {
     "en": "EN",
