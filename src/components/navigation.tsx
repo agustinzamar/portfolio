@@ -84,9 +84,8 @@ export function Navigation() {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className={cn(
           "fixed top-0 left-0 right-0 z-40 transition-all duration-300",
-          isScrolled
-            ? "bg-background/80 backdrop-blur-sm border-b border-border/50"
-            : "bg-transparent",
+          /* keep outer nav transparent to avoid a full-width border line; inner pill handles compact bg/border */
+          "bg-transparent",
         )}
       >
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -95,8 +94,8 @@ export function Navigation() {
             className={cn(
               "mx-auto flex items-center justify-between transition-all duration-300",
               isScrolled
-                ? "rounded-md bg-background/95 dark:bg-background/95 backdrop-blur-sm border border-border/40 py-1 mt-0 shadow-sm"
-                : "rounded-full bg-white/6 dark:bg-black/30 backdrop-blur-lg border border-white/8 py-3 mt-4 shadow-md",
+                ? "rounded-md bg-background/95 dark:bg-background/95 backdrop-blur-sm border border-border/40 py-2 mt-2 shadow-sm px-6 sm:px-8"
+                : "rounded-full bg-white/6 dark:bg-black/30 backdrop-blur-lg border border-white/8 py-4 mt-4 shadow-md px-6 sm:px-8",
             )}
           >
             {/* Logo / Name */}
