@@ -11,81 +11,84 @@ import { Particles } from "@/components/ui/particles";
 
 interface Project {
   id: string;
-  name: string;
-  description: string;
   techStack: string[];
   lightGradient: string;
   darkGradient: string;
-  initials: string;
+  url?: string;
+  githubUrl?: string;
 }
 
 const projects: Project[] = [
   {
-    id: "taskflow",
-    name: "TaskFlow Pro",
-    description: "Enterprise task management SaaS with real-time collaboration",
-    techStack: ["Next.js", "Laravel", "PostgreSQL", "WebSockets"],
+    id: "obsidianpos",
+    techStack: ["Laravel", "React", "Inertia", "Tailwind CSS"],
     lightGradient:
       "linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)",
     darkGradient:
       "linear-gradient(135deg, #3d4a7a 0%, #4a3a5c 50%, #6b5a7a 100%)",
-    initials: "TF",
+    url: "https://getobsidian.app",
   },
   {
-    id: "cloudstore",
-    name: "CloudStore API",
-    description: "Scalable e-commerce backend serving 100k+ requests daily",
-    techStack: ["Laravel", "Redis", "MySQL", "Docker"],
+    id: "arca-sdk",
+    techStack: ["PHP", "Laravel", "API Integration"],
     lightGradient:
       "linear-gradient(135deg, #0ba360 0%, #3cba92 50%, #00d2ff 100%)",
     darkGradient:
       "linear-gradient(135deg, #1a5a40 0%, #2a6a5a 50%, #2a7a8a 100%)",
-    initials: "CS",
+    url: "https://github.com/agustinzamar/laravel-arca-sdk",
+    githubUrl: "https://github.com/agustinzamar/laravel-arca-sdk",
   },
   {
-    id: "analytics",
-    name: "AnalyticsDash",
-    description:
-      "Real-time analytics dashboard with interactive visualizations",
-    techStack: ["React", "NestJS", "MongoDB", "Socket.io"],
+    id: "lasmarias",
+    techStack: ["Laravel", "React", "Inertia", "Tailwind CSS"],
     lightGradient:
       "linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #fa709a 100%)",
     darkGradient:
       "linear-gradient(135deg, #7a5a7a 0%, #8a4a5a 50%, #9a5a6a 100%)",
-    initials: "AD",
+    url: "https://www.lasmariasproyectos.com",
   },
   {
-    id: "authguard",
-    name: "AuthGuard",
-    description: "Secure authentication microservice with OAuth2 and MFA",
-    techStack: ["Laravel", "JWT", "PostgreSQL", "Redis"],
+    id: "empleopi",
+    techStack: ["Laravel", "React", "Inertia", "Tailwind CSS"],
     lightGradient:
       "linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #f6d365 100%)",
     darkGradient:
       "linear-gradient(135deg, #8a5a5a 0%, #8a7a7a 50%, #8a7a4a 100%)",
-    initials: "AG",
+    url: "https://empleopi.jujuy.gob.ar",
   },
   {
-    id: "devhub",
-    name: "DevHub Portal",
-    description: "Developer community platform with code sharing and vetting",
-    techStack: ["Next.js", "Tailwind", "Supabase", "Prisma"],
+    id: "proveedores-mineros",
+    techStack: ["Laravel", "React", "Inertia", "Tailwind CSS"],
     lightGradient:
       "linear-gradient(135deg, #a18cd1 0%, #fbc2eb 50%, #8fd3f4 100%)",
     darkGradient:
       "linear-gradient(135deg, #6a5a8a 0%, #8a7a8a 50%, #5a7a8a 100%)",
-    initials: "DH",
+    url: "https://proveedores.registrominero.jujuy.gob.ar",
   },
   {
-    id: "payflow",
-    name: "PayFlow Integration",
-    description: "Unified payment gateway wrapper with smart routing",
-    techStack: ["PHP", "Laravel", "Stripe", "Webhook"],
+    id: "guilsoft",
+    techStack: ["Laravel", "React", "Inertia", "Tailwind CSS"],
     lightGradient:
       "linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #ff6b6b 100%)",
     darkGradient:
       "linear-gradient(135deg, #8a7a6a 0%, #8a6a5a 50%, #8a4a4a 100%)",
-    initials: "PF",
+    url: "https://guilsoft.com",
+  },
+  {
+    id: "marketlatienda",
+    techStack: [
+      "Laravel",
+      "Blade",
+      "Alpine.js",
+      "Tailwind CSS",
+      "React",
+      "Inertia",
+    ],
+    lightGradient:
+      "linear-gradient(135deg, #00c9ff 0%, #92fe9d 50%, #00c9ff 100%)",
+    darkGradient:
+      "linear-gradient(135deg, #1a5a6a 0%, #2a6a5a 50%, #1a5a6a 100%)",
+    url: "https://marketlatienda.com.ar",
   },
 ];
 
@@ -93,10 +96,12 @@ function ProjectCard({
   project,
   index,
   isDark,
+  t,
 }: {
   project: Project;
   index: number;
   isDark: boolean;
+  t: (key: string) => string;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -186,51 +191,18 @@ function ProjectCard({
 
           {/* Content - Always Visible */}
           <div className="absolute inset-0 z-20 flex flex-col justify-between p-6">
-            {/* Top Row - Initials */}
-            <div className="flex justify-between items-start">
-              <motion.div
-                className={`w-12 h-12 rounded-xl backdrop-blur-md flex items-center justify-center transition-colors duration-300 ${isDark ? "bg-black/30" : "bg-white/20"}`}
-                animate={{
-                  scale: isHovered ? 1.1 : 1,
-                }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <span className="text-xl font-bold text-white drop-shadow-lg">
-                  {project.initials}
-                </span>
-              </motion.div>
-
-              {/* Tech badges - visible on hover */}
-              <motion.div
-                initial={{ opacity: 0, x: 10 }}
-                animate={{
-                  opacity: isHovered ? 1 : 0,
-                  x: isHovered ? 0 : 10,
-                }}
-                transition={{ duration: 0.2 }}
-                className="flex gap-1 flex-wrap max-w-[60%] justify-end"
-              >
-                {project.techStack.slice(0, 2).map((tech) => (
-                  <span
-                    key={tech}
-                    className={`px-2 py-1 text-[10px] font-medium backdrop-blur-sm rounded-md text-white transition-colors duration-300 ${isDark ? "bg-black/30" : "bg-white/20"}`}
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </motion.div>
+            {/* Top Content - Project Name */}
+            <div>
+              <h3 className="text-2xl font-bold text-white drop-shadow-lg">
+                {t(`${project.id}.name`)}
+              </h3>
             </div>
 
-            {/* Bottom Content - Always Visible */}
+            {/* Bottom Content */}
             <div className="space-y-3">
-              {/* Project Name */}
-              <h3 className="text-2xl font-bold text-white drop-shadow-lg">
-                {project.name}
-              </h3>
-
               {/* Description - Always visible */}
               <p className="text-white/90 text-sm line-clamp-2 drop-shadow-md">
-                {project.description}
+                {t(`${project.id}.description`)}
               </p>
 
               {/* Tech Stack - visible on hover */}
@@ -263,20 +235,28 @@ function ProjectCard({
                 transition={{ duration: 0.2, delay: 0.2 }}
                 className="flex gap-2 pt-2"
               >
-                <button
-                  type="button"
-                  className={`flex items-center gap-1.5 px-3 py-2 backdrop-blur-sm rounded-lg text-white text-xs font-medium transition-all ${isDark ? "bg-black/30 hover:bg-black/40" : "bg-white/20 hover:bg-white/30"}`}
-                >
-                  <Globe className="w-3.5 h-3.5" />
-                  <span>Demo</span>
-                </button>
-                <button
-                  type="button"
-                  className={`flex items-center gap-1.5 px-3 py-2 backdrop-blur-sm rounded-lg text-white text-xs font-medium transition-all border ${isDark ? "bg-black/20 hover:bg-black/30 border-white/20" : "bg-white/10 hover:bg-white/20 border-white/20"}`}
-                >
-                  <Github className="w-3.5 h-3.5" />
-                  <span>Code</span>
-                </button>
+                {project.url && (
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`flex items-center gap-1.5 px-3 py-2 backdrop-blur-sm rounded-lg text-white text-xs font-medium transition-all ${isDark ? "bg-black/30 hover:bg-black/40" : "bg-white/20 hover:bg-white/30"}`}
+                  >
+                    <Globe className="w-3.5 h-3.5" />
+                    <span>Website</span>
+                  </a>
+                )}
+                {project.githubUrl && (
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`flex items-center gap-1.5 px-3 py-2 backdrop-blur-sm rounded-lg text-white text-xs font-medium transition-all border ${isDark ? "bg-black/20 hover:bg-black/30 border-white/20" : "bg-white/10 hover:bg-white/20 border-white/20"}`}
+                  >
+                    <Github className="w-3.5 h-3.5" />
+                    <span>Code</span>
+                  </a>
+                )}
               </motion.div>
             </div>
           </div>
@@ -343,6 +323,7 @@ export function ProjectsSection() {
               project={project}
               index={index}
               isDark={isDark}
+              t={t}
             />
           ))}
         </div>

@@ -302,7 +302,35 @@
     "sectionTitle": "Portafolio",
     "heading": "Proyectos Destacados",
     "description": "Una selección de trabajo reciente que demuestra experiencia técnica y resolución creativa de problemas en diversas tecnologías e industrias",
-    "viewAll": "Ver Todos los Proyectos"
+    "viewAll": "Ver Todos los Proyectos",
+    "obsidianpos": {
+      "name": "ObsidianPOS",
+      "description": "Sistema de gestión de inventario con seguimiento y reportes en tiempo real"
+    },
+    "arca-sdk": {
+      "name": "Laravel ARCA SDK",
+      "description": "SDK para interactuar con la API de ARCA (ex AFIP) desde aplicaciones Laravel"
+    },
+    "lasmarias": {
+      "name": "Las Marias Proyectos",
+      "description": "Sitio web de desarrollo inmobiliario mostrando lotes y propiedades disponibles"
+    },
+    "empleopi": {
+      "name": "Empleo Parques Industriales",
+      "description": "Bolsa de trabajo para empresas del parque industrial de Jujuy, Argentina"
+    },
+    "proveedores-mineros": {
+      "name": "Registro de Proveedores Mineros",
+      "description": "Plataforma para gestión, administración y certificación de proveedores de empresas mineras de Jujuy, Argentina"
+    },
+    "guilsoft": {
+      "name": "Guilsoft",
+      "description": "Directorio de comercios, oficios y servicios"
+    },
+    "marketlatienda": {
+      "name": "MarketLaTienda",
+      "description": "Plataforma de ecommerce multi-tienda con integraciones de pago MercadoPago y MacroClick"
+    }
   },
   "language": {
     "en": "EN",
