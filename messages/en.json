@@ -154,7 +154,14 @@
       },
       "backend": {
         "name": "Backend",
-        "items": ["Laravel", "NestJS", "REST APIs", "Microservices", "Symfony"]
+        "items": [
+          "Laravel",
+          "NestJS",
+          "Strapi",
+          "REST APIs",
+          "Microservices",
+          "Symfony"
+        ]
       },
       "frontend": {
         "name": "Frontend",
