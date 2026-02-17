@@ -308,6 +308,10 @@
       "name": "ObsidianPOS",
       "description": "Inventory management system with real-time tracking and reporting"
     },
+    "loans-demo": {
+      "name": "Loans Management System",
+      "description": "A backend system for managing loans and financial operations"
+    },
     "arca-sdk": {
       "name": "Laravel ARCA SDK",
       "description": "SDK for interacting with ARCA API (formerly AFIP) from Laravel applications"

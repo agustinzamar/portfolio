@@ -29,6 +29,15 @@ const projects: Project[] = [
     url: "https://getobsidian.app",
   },
   {
+    id: "loans-demo",
+    techStack: ["NestJS", "TypeScript", "Node.js", "TypeORM"],
+    lightGradient:
+      "linear-gradient(135deg, #2193b0 0%, #6dd5ed 50%, #cc2b5e 100%)",
+    darkGradient:
+      "linear-gradient(135deg, #1a5a6a 0%, #3a7a8a 50%, #8a2a4a 100%)",
+    githubUrl: "https://github.com/agustinzamar/loans-demo",
+  },
+  {
     id: "arca-sdk",
     techStack: ["PHP", "Laravel", "API Integration"],
     lightGradient:
