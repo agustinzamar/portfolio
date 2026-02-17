@@ -15,8 +15,8 @@ import {
 export function HeroSection() {
   const t = useTranslations("hero");
 
-  const handleScrollToAbout = () => {
-    const element = document.getElementById("about");
+  const handleScrollToProjects = () => {
+    const element = document.getElementById("projects");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
@@ -143,7 +143,7 @@ export function HeroSection() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <ShimmerButton
-            onClick={handleScrollToAbout}
+            onClick={handleScrollToProjects}
             className="px-8 py-3 text-base font-medium"
             shimmerColor="#818CF8"
             background="linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)"
@@ -152,15 +152,16 @@ export function HeroSection() {
           </ShimmerButton>
 
           <motion.a
-            href="/assets/files/Agustin_Zamar_CV.pdf"
-            download
-            title={t("cta.downloadCV")}
+            href="https://linkedin.com/in/agustinzamar"
+            target="_blank"
+            rel="noopener noreferrer"
+            title={t("cta.linkedin")}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="flex items-center gap-2 px-8 py-3 text-base font-medium rounded-full bg-muted hover:bg-primary/10 text-foreground hover:text-primary transition-colors"
           >
-            <Download className="w-5 h-5" />
-            {t("cta.downloadCV")}
+            <Linkedin className="w-5 h-5" />
+            {t("cta.linkedin")}
           </motion.a>
         </motion.div>
 
@@ -211,7 +212,7 @@ export function HeroSection() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
       >
         <motion.button
-          onClick={handleScrollToAbout}
+          onClick={handleScrollToProjects}
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           className="flex flex-col items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"

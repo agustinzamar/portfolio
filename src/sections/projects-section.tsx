@@ -205,7 +205,7 @@ function ProjectCard({
                 {t(`${project.id}.description`)}
               </p>
 
-              {/* Tech Stack - visible on hover */}
+              {/* Tech Stack - always visible on mobile, visible on hover on desktop */}
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{
@@ -213,7 +213,7 @@ function ProjectCard({
                   y: isHovered ? 0 : 10,
                 }}
                 transition={{ duration: 0.2, delay: 0.1 }}
-                className="flex flex-wrap gap-2"
+                className="flex flex-wrap gap-2 md:opacity-0 md:group-hover:opacity-100 opacity-100"
               >
                 {project.techStack.map((tech) => (
                   <span
